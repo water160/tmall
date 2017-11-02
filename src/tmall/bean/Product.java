@@ -6,12 +6,13 @@ import java.util.List;
 public class Product {
 
     private int id;
-    private String name;
-    private String subTitle;
-    private float originalPrice;
-    private float promotePrice;
-    private int stock;
-    private Date createDate;
+    private String name;// 产品名称
+    private String subTitle;// 子标题
+    private float originalPrice;// 原价
+    private float promotePrice;// 折扣价
+    private int stock;// 库存量
+    private Date createDate;// 创建日期
+    private Category category;// 所属类别
 
     private ProductImage firstProductImage;// 下面几个用于产品页显示
     private List<ProductImage> productImagesList;
@@ -67,6 +68,14 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Date getCreateDate() {

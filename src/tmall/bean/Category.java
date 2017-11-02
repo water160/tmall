@@ -8,7 +8,7 @@ public class Category {
     private String name;
     //Relations
     private List<Product> productList;// 维持了一对多的关系，用于首页分类选择
-    private List<List<Product>> productListGroup;
+    private List<List<Product>> productListByRow;
 
     public int getId() {
         return id;
@@ -34,12 +34,12 @@ public class Category {
         this.productList = productList;
     }
 
-    public List<List<Product>> getProductListGroup() {
-        return productListGroup;
+    public List<List<Product>> getproductListByRow() {
+        return productListByRow;
     }
 
-    public void setProductListGroup(List<List<Product>> productListGroup) {
-        this.productListGroup = productListGroup;
+    public void setProductListByRow(List<List<Product>> productListByRow) {
+        this.productListByRow = productListByRow;
     }
 
     //test
