@@ -180,10 +180,10 @@ public class ProductDAO {
     }
 
     public List<Product> listAllProduct() {
-        return list(0, Short.MAX_VALUE);
+        return listProduct(0, Short.MAX_VALUE);
     }
 
-    public List<Product> list(int start, int count) {
+    public List<Product> listProduct(int start, int count) {
         List<Product> p_list = new ArrayList<Product>();
 
         String sql = "select * from product limit ?, ?";
@@ -228,40 +228,41 @@ public class ProductDAO {
     /**
      * 为所有分类填充产品集合
      *
-     * @param cs
+     * @param categoryList
      */
-    public void fillAll(List<Category> cs) {
-        for (Category c : cs)
-            fill(c);
+    public void fillAll(List<Category> categoryList) {
+        for (Category category : categoryList)
+            fill(category);
     }
 
     /**
      * 为某个分类填充产品集合
      *
-     * @param c
+     * @param category
      */
-    public void fill(Category c) {
-        List<Product> ps = this.listAllProductByCid(c.getId());
-        c.setProductList(ps);
+    public void fill(Category category) {
+        List<Product> ps = this.listAllProductByCid(category.getId());
+        category.setProductList(ps);
     }
 
     /**
      * 便于首页显示，针对每个类别都加入一个List<List<Product>>，用于首页展示
      *
-     * @param cs
+     * @param categoryList
      */
-    public void fillByRow(List<Category> cs) {
+    public void fillByRow(List<Category> categoryList) {
         int productNumberEachRow = 8;
-        for (Category c : cs) {
-            List<Product> products = c.getProductList();
+        for (Category category : categoryList) {
+            List<Product> products = category.getProductList();
             List<List<Product>> productsByRow = new ArrayList<>();
+
             for (int i = 0; i < products.size(); i += productNumberEachRow) {
                 int size = i + productNumberEachRow;
                 size = size > products.size() ? products.size() : size;
                 List<Product> productsOfEachRow = products.subList(i, size);
                 productsByRow.add(productsOfEachRow);
             }
-            c.setProductListByRow(productsByRow);
+            category.setProductListByRow(productsByRow);
         }
     }
 
@@ -285,7 +286,7 @@ public class ProductDAO {
         int saleCount = new OrderItemDAO().getSaleCount(product.getId());
         product.setSaleCount(saleCount);
 
-        int reviewCount = new ReviewDAO().getCount(p.getId());
+        int reviewCount = new ReviewDAO().getTotal(product.getId());
         product.setReviewCount(reviewCount);
 
     }
@@ -308,12 +309,13 @@ public class ProductDAO {
             return beans;
         String sql = "select * from product where name like ? limit ?, ?";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setString(1, "%" + keyword.trim() + "%");
-            ps.setInt(2, start);
-            ps.setInt(3, count);
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, "%" + keyword.trim() + "%");
+            pstmt.setInt(2, start);
+            pstmt.setInt(3, count);
 
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 Product bean = new Product();
