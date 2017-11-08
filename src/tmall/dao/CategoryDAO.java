@@ -224,7 +224,7 @@ public class CategoryDAO {
      * @param count
      * @return ArrayList<Category> c_list
      */
-    public List<Category> listCategory(int start, int count) {
+    public List<Category> list(int start, int count) {
         List<Category> c_list = new ArrayList<Category>();
 
         Connection conn = null;
@@ -274,8 +274,8 @@ public class CategoryDAO {
      *
      * @return ArrayList<Category> c_list
      */
-    public List<Category> listAllCategory() {
-        return listCategory(0, Short.MAX_VALUE);
+    public List<Category> list() {
+        return list(0, Short.MAX_VALUE);
     }
 
 }

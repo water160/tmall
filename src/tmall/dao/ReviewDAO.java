@@ -140,11 +140,11 @@ public class ReviewDAO {
         return bean;
     }
 
-    public List<Review> listAllReviewByPid(int pid) {
-        return listReviewByPid(pid, 0, Short.MAX_VALUE);
+    public List<Review> list(int pid) {
+        return list(pid, 0, Short.MAX_VALUE);
     }
 
-    public List<Review> listReviewByPid(int pid, int start, int count) {
+    public List<Review> list(int pid, int start, int count) {
         List<Review> r_list = new ArrayList<Review>();
 
         String sql = "select * from review where pid = ? order by id desc limit ?, ?";

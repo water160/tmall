@@ -139,11 +139,11 @@ public class PropertyValueDAO {
         return bean;
     }
 
-    public List<PropertyValue> listAllPropertyValue() {
-        return listPropertyValue(0, Short.MAX_VALUE);
+    public List<PropertyValue> list() {
+        return list(0, Short.MAX_VALUE);
     }
 
-    public List<PropertyValue> listPropertyValue(int start, int count) {
+    public List<PropertyValue> list(int start, int count) {
         List<PropertyValue> pv_list = new ArrayList<PropertyValue>();
 
         String sql = "select * from propertyvalue order by id desc limit ?, ?";
@@ -183,7 +183,7 @@ public class PropertyValueDAO {
      */
     public void init(Product product) {
         //找到该产品所属类别下的所有属性
-        List<Property> pt_list = new PropertyDAO().listAllProperty(product.getCategory().getId());
+        List<Property> pt_list = new PropertyDAO().list(product.getCategory().getId());
 
         for (Property property : pt_list) {
             //根据该产品id和属性值id查询到唯一的属性值，若属性值为空说明未设置也需要在前台展示，因此也要添加到PropertyValue对象中维系
@@ -203,7 +203,7 @@ public class PropertyValueDAO {
      * @param pid
      * @return
      */
-    public List<PropertyValue> listPropertyValueByPid(int pid) {
+    public List<PropertyValue> list(int pid) {
         List<PropertyValue> pv_list = new ArrayList<PropertyValue>();
 
         String sql = "select * from propertyvalue where pid = ? order by ptid desc";

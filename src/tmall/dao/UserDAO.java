@@ -230,7 +230,7 @@ public class UserDAO {
      * @param count
      * @return ArrayList<User> user_list
      */
-    public List<User> listUser(int start, int count) {
+    public List<User> list(int start, int count) {
         List<User> user_list = new ArrayList<User>();
 
         Connection conn = null;
@@ -282,8 +282,8 @@ public class UserDAO {
      *
      * @return ArrayList<User> user_list
      */
-    public List<User> listAllUser() {
-        return listUser(0, Short.MAX_VALUE);
+    public List<User> list() {
+        return list(0, Short.MAX_VALUE);
     }
 
     /**

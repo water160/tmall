@@ -85,11 +85,11 @@ public class ProductImageDAO {
         return bean;
     }
 
-    public List<ProductImage> listAllProductImage(Product product, String type) {
-        return listProductImage(product, type, 0, Short.MAX_VALUE);
+    public List<ProductImage> list(Product product, String type) {
+        return list(product, type, 0, Short.MAX_VALUE);
     }
 
-    public List<ProductImage> listProductImage(Product product, String type, int start, int count) {
+    public List<ProductImage> list(Product product, String type, int start, int count) {
         List<ProductImage> pi_list = new ArrayList<ProductImage>();
 
         String sql = "select * from ProductImage where pid = ? and type = ? order by id desc limit ?, ?";

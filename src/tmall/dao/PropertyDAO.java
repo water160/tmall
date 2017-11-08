@@ -95,11 +95,11 @@ public class PropertyDAO {
         return bean;
     }
 
-    public List<Property> listAllProperty(int cid) {
-        return listProperty(cid, 0, Short.MAX_VALUE);
+    public List<Property> list(int cid) {
+        return list(cid, 0, Short.MAX_VALUE);
     }
 
-    public List<Property> listProperty(int cid, int start, int count) {
+    public List<Property> list(int cid, int start, int count) {
         List<Property> pt_list = new ArrayList<Property>();
         String sql = "SELECT * FROM property WHERE cid = ? order by id desc limit ?, ?";
 

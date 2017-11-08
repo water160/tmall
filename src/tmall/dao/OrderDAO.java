@@ -154,11 +154,11 @@ public class OrderDAO {
         return bean;
     }
 
-    public List<Order> listAllOrder() {
-        return listOrder(0, Short.MAX_VALUE);
+    public List<Order> list() {
+        return list(0, Short.MAX_VALUE);
     }
 
-    public List<Order> listOrder(int start, int count) {
+    public List<Order> list(int start, int count) {
         List<Order> o_list = new ArrayList<Order>();
 
         String sql = "select * from order_ order by id desc limit ?, ?";
@@ -209,8 +209,8 @@ public class OrderDAO {
         return o_list;
     }
 
-    public List<Order> listAllOrderByUid(int uid, String excludedStatus) {
-        return listOrderByUid(uid, excludedStatus, 0, Short.MAX_VALUE);
+    public List<Order> list(int uid, String excludedStatus) {
+        return list(uid, excludedStatus, 0, Short.MAX_VALUE);
     }
 
     /**
@@ -222,7 +222,7 @@ public class OrderDAO {
      * @param count
      * @return
      */
-    public List<Order> listOrderByUid(int uid, String excludedStatus, int start, int count) {
+    public List<Order> list(int uid, String excludedStatus, int start, int count) {
         List<Order> ou_list = new ArrayList<Order>();
 
         String sql = "select * from order_ where uid = ? and status != ? order by id desc limit ?, ?";

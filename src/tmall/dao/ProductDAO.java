@@ -133,11 +133,11 @@ public class ProductDAO {
      * @param cid
      * @return
      */
-    public List<Product> listAllProductByCid(int cid) {
-        return listProductByCid(cid, 0, Short.MAX_VALUE);
+    public List<Product> list(int cid) {
+        return list(cid, 0, Short.MAX_VALUE);
     }
 
-    public List<Product> listProductByCid(int cid, int start, int count) {
+    public List<Product> list(int cid, int start, int count) {
         List<Product> p_list_cid = new ArrayList<Product>();
         Category category = new CategoryDAO().getCategoryById(cid);
         String sql = "select * from product where cid = ? order by id desc limit ?, ?";
@@ -179,11 +179,11 @@ public class ProductDAO {
         return p_list_cid;
     }
 
-    public List<Product> listAllProduct() {
-        return listProduct(0, Short.MAX_VALUE);
+    public List<Product> list() {
+        return list(0, Short.MAX_VALUE);
     }
 
-    public List<Product> listProduct(int start, int count) {
+    public List<Product> list(int start, int count) {
         List<Product> p_list = new ArrayList<Product>();
 
         String sql = "select * from product limit ?, ?";
@@ -241,7 +241,7 @@ public class ProductDAO {
      * @param category
      */
     public void fill(Category category) {
-        List<Product> ps = this.listAllProductByCid(category.getId());
+        List<Product> ps = this.list(category.getId());
         category.setProductList(ps);
     }
 
@@ -272,7 +272,7 @@ public class ProductDAO {
      * @param product
      */
     public void setMainProductImage(Product product) {
-        List<ProductImage> pis = new ProductImageDAO().listAllProductImage(product, ProductImageDAO.typeSingle);
+        List<ProductImage> pis = new ProductImageDAO().list(product, ProductImageDAO.typeSingle);
         if (!pis.isEmpty())
             product.setFirstProductImage(pis.get(0));
     }

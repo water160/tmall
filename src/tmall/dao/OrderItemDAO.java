@@ -129,11 +129,11 @@ public class OrderItemDAO {
         return bean;
     }
 
-    public List<OrderItem> listAllOrderItemByUid(int uid) {
-        return listOrderItemByUid(uid, 0, Short.MAX_VALUE);
+    public List<OrderItem> listByUser(int uid) {
+        return listByUser(uid, 0, Short.MAX_VALUE);
     }
 
-    public List<OrderItem> listOrderItemByUid(int uid, int start, int count) {
+    public List<OrderItem> listByUser(int uid, int start, int count) {
         List<OrderItem> beans = new ArrayList<OrderItem>();
         String sql = "select * from orderitem where uid = ? and oid=-1 order by id desc limit ?,? ";
 
