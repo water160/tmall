@@ -111,11 +111,13 @@ public class CategoryServlet extends BaseBackServlet {
 
     @Override
     public String list(HttpServletRequest request, HttpServletResponse response, Page page) {
+        //通过categoryDAO获取数据集合c_list
         List<Category> c_list = categoryDAO.list(page.getStart(), page.getCount());
         int total = categoryDAO.getTotal();
         page.setTotal(total);
-
+        //通过request.setAttribute放在变量c_list当中，服务器端跳转到jsp后即可获取
         request.setAttribute("c_list", c_list);
+        //通过request.setAttribute放在变量page当中，jsp页面通过page.XXX调用
         request.setAttribute("page", page);
         return "admin/listCategory.jsp";
     }
