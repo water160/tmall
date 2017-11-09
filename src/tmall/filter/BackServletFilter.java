@@ -32,7 +32,7 @@ public class BackServletFilter implements Filter {
 //        String uri = request.getRequestURI();
 //        uri = StringUtils.remove(uri, contextPath);
         String uri = request.getServletPath();//获取浏览器请求的路径（除根目录外）
-        if (uri.startsWith("/admin")) {
+        if (uri.startsWith("/admin_")) {
             String servletPath = StringUtils.substringBetween(uri, "_", "_") + "Servlet";// 取出admin_category_list
             String method = StringUtils.substringAfterLast(uri, "_");
             request.setAttribute("method", method);

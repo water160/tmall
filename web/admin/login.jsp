@@ -2,10 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <script src="js/jquery/3.2.1/jquery.js"></script>
-    <link href="css/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap/3.3.7/bootstrap.min.js"></script>
-    <link href="css/back/style.css" rel="stylesheet">
+    <script src="../js/jquery/3.2.1/jquery.js"></script>
+    <link href="../css/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap/3.3.7/bootstrap.min.js"></script>
+    <link href="../css/back/style.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -26,8 +26,8 @@
                         } else if (password == null || !password.equals("admin")) {
                             out.println("<p style=\"color: #ac2925\">password not correct.</p>");
                         } else {
-                            session.setAttribute("admin", "true");
-                            response.sendRedirect("admin_category_list");
+                            request.getSession().setAttribute("admin", "true");
+                            response.sendRedirect("/admin_category_list");
                         }
                     }
                 %>

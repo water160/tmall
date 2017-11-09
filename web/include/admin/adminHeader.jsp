@@ -5,15 +5,15 @@
 <%
     String admin = (String) session.getAttribute("admin");
     if (admin == null || !admin.equals("true")) {
-        response.sendRedirect("404.jsp");
+        response.sendRedirect("/admin/404.jsp");
     }
 %>
 <html>
 <head>
-    <script src="js/jquery/3.2.1/jquery.js"></script>
-    <link href="css/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap/3.3.7/bootstrap.min.js"></script>
-    <link href="css/back/style.css" rel="stylesheet">
+    <script src="../js/jquery/3.2.1/jquery.js"></script>
+    <link href="../css/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap/3.3.7/bootstrap.min.js"></script>
+    <link href="../css/back/style.css" rel="stylesheet">
     <script>
         function checkEmpty(id, name){
             var value = $("#"+id).val();
