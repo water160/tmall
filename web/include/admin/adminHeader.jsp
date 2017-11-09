@@ -1,11 +1,18 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
+<%
+    String admin = (String) session.getAttribute("admin");
+    if (admin == null || !admin.equals("true")) {
+        response.sendRedirect("404.jsp");
+    }
+%>
+<html>
 <head>
-    <script src="js/jquery/2.0.0/jquery.min.js"></script>
-    <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="js/jquery/3.2.1/jquery.js"></script>
+    <link href="css/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap/3.3.7/bootstrap.min.js"></script>
     <link href="css/back/style.css" rel="stylesheet">
     <script>
         function checkEmpty(id, name){
@@ -17,6 +24,7 @@
             }
             return true;
         }
+
         function checkNumber(id, name){
             var value = $("#"+id).val();
             if(value.length==0){
@@ -32,6 +40,7 @@
 
             return true;
         }
+
         function checkInt(id, name){
             var value = $("#"+id).val();
             if(value.length==0){

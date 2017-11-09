@@ -1,16 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: zp160
-  Date: 2017/10/31
-  Time: 17:05
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
-</html>
+<c:redirect url="admin/login.jsp"></c:redirect>
