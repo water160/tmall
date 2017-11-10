@@ -3,7 +3,7 @@
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#nowhere">Tmall后台管理</a>
+                <a class="navbar-brand" href="">Tmall 后台管理</a>
             </div>
             <div>
                 <ul class="nav navbar-nav">

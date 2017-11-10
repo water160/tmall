@@ -20,15 +20,31 @@
         h2{color:#0188DE; font-size:16px; padding:10px 0px 40px 0px;}
 
         #page{width:910px; padding:20px 20px 40px 20px; margin-top:80px;}
-        .button{width:180px; height:28px; margin-left:0px; margin-top:10px; background:#009CFF; border-bottom:4px solid #0188DE; text-align:center;}
-        .button a{width:180px; height:28px; display:block; font-size:14px; color:#fff; }
+
+        .button {
+            width: 150px;
+            height: 30px;
+            margin-left: 0px;
+            margin-top: 10px;
+            background: #009CFF;
+            border: 2px solid #0188DE;
+            text-align: center;
+        }
+
+        .button a {
+            width: 150px;
+            height: 30px;
+            display: block;
+            font-size: 14px;
+            color: #fff;
+        }
         .button a:hover{ background:#5BBFFF;}
     </style>
 </head>
 <body>
     <div id="page" style="border:5px dashed #e4e4e4; line-height:30px;">
         <h1>您还未登录，请您返回登录页面~</h1>
-        <h2>Sorry, the site now can not be accessed. </h2>
+        <h2>Sorry, the site now can not be accessed.</h2>
         <div class="button">
             <a href="/admin/login.jsp" title="返回登录页面">返回登录页面</a>
         </div>

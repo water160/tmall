@@ -97,11 +97,14 @@ public abstract class BaseBackServlet extends HttpServlet {
             while (iter.hasNext()) {
                 FileItem fileItem = (FileItem) iter.next();
                 if (!fileItem.isFormField()) {
+                    //此处浏览器指定了以二进制的形式提交数据，不能通过常规的手段获取非File字段，在遍历item时通过item.isFormField，若为true则为常规字段
+                    //如果此处提交的为文件
                     is = fileItem.getInputStream();//获取上传文件的输入流
                 } else {
                     String paramName = fileItem.getFieldName();
                     String paramValue = fileItem.getString();
                     paramValue = new String(paramValue.getBytes("ISO-8859-1"), "UTF-8");
+                    System.out.println(paramName + " " + paramValue);
                     params.put(paramName, paramValue);
                 }
             }

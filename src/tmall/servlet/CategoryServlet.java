@@ -29,19 +29,22 @@ public class CategoryServlet extends BaseBackServlet {
         categoryDAO.add(c);
         //这里使用getSession(), 如果没有就创建一个
         File imageFolder = new File(request.getSession().getServletContext().getRealPath("img/category"));
+        //新建一个命名为id.jpg的文件
         File file = new File(imageFolder, c.getId() + ".jpg");
 
         try {
             if (is != null && is.available() != 0) {
                 try (FileOutputStream fos = new FileOutputStream(file)) {
+                    //复制文件，一次复制1M
                     byte b[] = new byte[1024 * 1024];
                     int length = 0;
                     while ((length = is.read(b)) != -1) {
                         fos.write(b, 0, length);
                     }
                     fos.flush();
-                    // 将文件保存成jpg格式
+                    // 将复制好的file转换为jpg文件，仅仅修改文件的后缀名有可能会导致显示异常，因此通过ImageUtil工具类转换成jpg格式
                     BufferedImage img = ImageUtil.change2jpg(file);
+                    //仅仅通过ImageIO.write(img, "jpg", file);不足以保证转换出来的jpg文件显示正常
                     ImageIO.write(img, "jpg", file);
                 } catch (Exception e) {
                     e.printStackTrace();

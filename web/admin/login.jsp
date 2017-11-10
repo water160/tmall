@@ -48,6 +48,7 @@
                     <span class="text">Remember me</span>
                     <button type="submit" class="btn btn-default">登录</button>
                 </div>
+                <span class="badge">仅供测试，用户名与密码均为admin</span>
             </form>
         </div>
     </div>
