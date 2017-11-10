@@ -60,9 +60,9 @@
         $(function(){
             $("a").click(function(){
                 var deleteLink = $(this).attr("deleteLink");
-                console.log(deleteLink);
-                if("true"==deleteLink){
-                    var confirmDelete = confirm("确认要删除");
+                //console.log(deleteLink);
+                if (deleteLink == "true") {
+                    var confirmDelete = confirm("确认删除?");
                     if(confirmDelete)
                         return true;
                     return false;

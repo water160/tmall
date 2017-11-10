@@ -23,7 +23,7 @@ public class CategoryServlet extends BaseBackServlet {
         Map<String, String> params = new HashMap<>();
         InputStream is = super.parseUpload(request, params);
 
-        String name = params.get("name");
+        String name = params.get("name");//小米手机
         Category c = new Category();
         c.setName(name);
         categoryDAO.add(c);

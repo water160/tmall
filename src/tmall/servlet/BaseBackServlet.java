@@ -104,7 +104,7 @@ public abstract class BaseBackServlet extends HttpServlet {
                     String paramName = fileItem.getFieldName();
                     String paramValue = fileItem.getString();
                     paramValue = new String(paramValue.getBytes("ISO-8859-1"), "UTF-8");
-                    System.out.println(paramName + " " + paramValue);
+                    //System.out.println(paramName + " " + paramValue);// name 小米手机
                     params.put(paramName, paramValue);
                 }
             }

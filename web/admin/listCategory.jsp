@@ -19,6 +19,7 @@
 <div class="container">
     <div class="container">
         <h3>分类管理
+            <!--模态框按钮-->
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCategory">添加分类</button>
         </h3>
     </div>
@@ -43,7 +44,8 @@
                     <%--<td><a href="admin_property_list?cid=${c.id}"><span class="glyphicon glyphicon-th-list"></span></a></td>--%>
                     <%--<td><a href="admin_product_list?cid=${c.id}"><span class="glyphicon glyphicon-shopping-cart"></span></a></td>--%>
                 <td><a href="admin_category_edit?id=${c.id}"><span class="glyphicon glyphicon-edit"></span> 编辑</a></td>
-                <td><a href="admin_category_delete?id=${c.id}"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                <td><a deleteLink="true" href="admin_category_delete?id=${c.id}"><span
+                        class="glyphicon glyphicon-trash"></span> 删除</a>
                 </td>
             </tr>
         </c:forEach>
