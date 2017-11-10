@@ -132,10 +132,6 @@
     transition: all 0.5s ease 0s;
 }
 
-.btn-default:hover, .main-checkbox:hover {
-    background: #12afef;
-}
-
 @media only screen and (max-width: 479px) {
     .form-horizontal .form-group {
         padding: 0 25px;

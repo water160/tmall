@@ -78,7 +78,7 @@ public class CategoryServlet extends BaseBackServlet {
         Map<String, String> params = new HashMap<>();
         InputStream is = super.parseUpload(request, params);
 
-        System.out.println(params);
+        //System.out.println(params);// {name=平板电视, id=83}
         String name = params.get("name");
         int id = Integer.parseInt(params.get("id"));
 
