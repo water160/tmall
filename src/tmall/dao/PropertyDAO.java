@@ -117,6 +117,7 @@ public class PropertyDAO {
                 bean.setId(id);
                 bean.setName(name);
                 bean.setCategory(category);
+                pt_list.add(bean);
             }
         } catch (SQLException e) {
             e.printStackTrace();
