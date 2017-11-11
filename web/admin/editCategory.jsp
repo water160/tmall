@@ -15,7 +15,7 @@
 </script>
 <div class="container">
     <ol class="breadcrumb">
-        <li><a href="admin_category_list">分类管理</a></li>
+        <li><a href="admin_category_list">所有分类</a></li>
         <li class="active">编辑分类</li>
     </ol>
 </div>
@@ -37,9 +37,8 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <button class="btn btn-default" onclick="window.location.href='admin_category_list'">放 弃
-                            </button>
-                            <button type="submit" class="btn btn-success">提 交</button>
+                            <button class="btn btn-default" onclick="window.location.href='admin_category_list'">放弃更改</button>
+                            <button type="submit" class="btn btn-success">确定更改</button>
                         </td>
                     </tr>
                 </table>

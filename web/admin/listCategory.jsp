@@ -26,14 +26,14 @@
 
     <table class="table table-hover table-responsive table-bordered">
         <thead class="text-success">
-        <tr>
-            <th width="8%">分类ID</th>
-            <th width="20%">分类名称</th>
-            <th width="50%">图片</th>
-            <%--<th>属性管理</th>--%>
-            <%--<th>产品管理</th>--%>
-            <th colspan="2" class="center">操作</th>
-        </tr>
+            <tr>
+                <th width="6%">分类ID</th>
+                <th width="14%">分类名称</th>
+                <th width="40%">图片</th>
+                <th width="10%">属性管理</th>
+                <th width="10%">产品管理</th>
+                <th colspan="2" class="center">操作</th>
+            </tr>
         </thead>
         <tbody>
         <c:forEach items="${c_list}" var="c">
@@ -41,8 +41,14 @@
                 <td>${c.id}</td>
                 <td>${c.name}</td>
                 <td><img height="40px" src="img/category/${c.id}.jpg" alt="${c.id}.jpg"></td>
-                    <%--<td><a href="admin_property_list?cid=${c.id}"><span class="glyphicon glyphicon-th-list"></span></a></td>--%>
-                    <%--<td><a href="admin_product_list?cid=${c.id}"><span class="glyphicon glyphicon-shopping-cart"></span></a></td>--%>
+                <td>
+                    <a href="admin_property_list?cid=${c.id}">
+                        <span class="glyphicon glyphicon-th-list"></span> 分类属性</a>
+                </td>
+                <td>
+                    <a href="admin_product_list?cid=${c.id}">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> 分类产品</a>
+                </td>
                 <td>
                     <a class href="admin_category_edit?id=${c.id}">
                         <span class="glyphicon glyphicon-edit"></span> 编辑</a>
@@ -77,14 +83,14 @@
                             <td>分类图片</td>
                             <td>
                                 <input id="categoryPic" accept="image/*" type="file" name="filepath"/>
-                                <div class="label label-default">height=40px, width<=1000px, size<=10M</div>
+                                <div class="label label-warning">height=40px, width<=1000px, size<=10M</div>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">提交</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">放弃添加</button>
+                    <button type="submit" class="btn btn-primary">确定添加</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
