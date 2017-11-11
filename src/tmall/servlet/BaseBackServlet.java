@@ -49,7 +49,7 @@ public abstract class BaseBackServlet extends HttpServlet {
         try {
             /*获取分页信息*/
             int start = 0;
-            int count = 7;
+            int count = 5;
             try {
                 start = Integer.parseInt(request.getParameter("page.start"));
                 if (start < 0) {
