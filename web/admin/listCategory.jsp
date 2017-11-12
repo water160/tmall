@@ -89,7 +89,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">放弃添加</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取 消</button>
                     <button type="submit" class="btn btn-primary">确定添加</button>
                 </div>
             </div><!-- /.modal-content -->

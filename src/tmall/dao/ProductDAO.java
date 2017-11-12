@@ -57,8 +57,7 @@ public class ProductDAO {
 
     public void update(Product bean) {
 
-        String sql = "update product set name = ?, subTitle = ?, originalPrice = ?, " +
-                "promotePrice = ?, stock = ?, cid = ?, createDate = ? where id = ?";
+        String sql = "update product set name=?, subTitle=?, originalPrice=?, promotePrice=?, stock=?, cid=?, createDate=? where id=?";
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             conn.setAutoCommit(false);

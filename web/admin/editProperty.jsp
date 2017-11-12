@@ -17,7 +17,8 @@
     <ol class="breadcrumb">
         <li><a href="admin_category_list">所有分类</a></li>
         <li><a href="admin_property_list?cid=${property.category.id}">${property.category.name}</a></li>
-        <li class="active">编辑属性(${property.name})</li>
+        <li class="active">${property.name}</li>
+        <li class="active">编辑分类属性</li>
     </ol>
 </div>
 <div class="container" style="width: 50%;">
@@ -28,11 +29,11 @@
                 <table class="table">
                     <tr>
                         <td>属性名称</td>
-                        <td><input id="name" name="name" value="${property.name}" type="text"></td>
+                        <td><input id="name" name="name" value="${property.name}" type="text" class="form-control"></td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <button class="btn btn-default" onclick="window.location.href='admin_property_list?cid=${property.category.id}'">放弃更改</button>
+                            <button class="btn btn-default" onclick="window.location.href='admin_property_list?cid=${property.category.id}'">取 消</button>
                             <button type="submit" class="btn btn-success">确定更改</button>
                         </td>
                     </tr>

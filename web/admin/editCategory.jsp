@@ -27,7 +27,7 @@
                 <table class="table">
                     <tr>
                         <td>分类名称</td>
-                        <td><input id="name" name="name" value="${c.name}" type="text"></td>
+                        <td><input id="name" name="name" value="${c.name}" type="text" class="form-control"></td>
                     </tr>
                     <tr>
                         <td>分类图片</td>
@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <button class="btn btn-default" onclick="window.location.href='admin_category_list'">放弃更改</button>
+                            <button class="btn btn-default" onclick="window.location.href='admin_category_list'">取 消</button>
                             <button type="submit" class="btn btn-success">确定更改</button>
                         </td>
                     </tr>
