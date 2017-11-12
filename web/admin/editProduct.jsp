@@ -22,8 +22,8 @@
 <div class="container">
     <ol class="breadcrumb">
         <li><a href="admin_category_list">所有分类</a></li>
-        <li><a href="admin_product_list?cid=${product.category.id}">${product.category.name}</a></li>
-        <li class="active">${product.name}</li>
+        <li><a href="admin_product_list?cid=${product.category.id}">分类名(${product.category.name})</a></li>
+        <li class="active">产品名(${product.name})</li>
         <li class="active">编辑产品</li>
     </ol>
 </div>

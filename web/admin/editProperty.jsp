@@ -16,8 +16,8 @@
 <div class="container">
     <ol class="breadcrumb">
         <li><a href="admin_category_list">所有分类</a></li>
-        <li><a href="admin_property_list?cid=${property.category.id}">${property.category.name}</a></li>
-        <li class="active">${property.name}</li>
+        <li><a href="admin_property_list?cid=${property.category.id}">分类名(${property.category.name})</a></li>
+        <li class="active">属性名(${property.name})</li>
         <li class="active">编辑分类属性</li>
     </ol>
 </div>

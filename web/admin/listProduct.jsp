@@ -23,11 +23,11 @@
 <div class="container">
     <ol class="breadcrumb">
         <li><a href="admin_category_list">所有分类</a></li>
-        <li><a href="admin_product_list?cid=${c.id}">${c.name}</a></li>
+        <li><a href="admin_product_list?cid=${c.id}">分类名(${c.name})</a></li>
         <li class="active">产品管理</li>
     </ol>
     <div class="container">
-        <h4>分类产品管理
+        <h4>分类产品管理 - (${c.name})
             <!--模态框按钮-->
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">添加产品</button>
         </h4>
@@ -45,7 +45,7 @@
             <th width="6%">库存量</th>
             <th width="10%">产品图片管理</th>
             <th width="9%">属性值设置</th>
-            <th >创建时间</th>
+            <th width="9%">创建时间</th>
             <th colspan="2" class="center">操作</th>
         </tr>
         </thead>

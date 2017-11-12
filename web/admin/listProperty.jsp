@@ -17,11 +17,11 @@
 <div class="container">
     <ol class="breadcrumb">
         <li><a href="admin_category_list">所有分类</a></li>
-        <li><a href="admin_property_list?cid=${c.id}">${c.name}</a></li>
+        <li><a href="admin_property_list?cid=${c.id}">分类名(${c.name})</a></li>
         <li class="active">属性管理</li>
     </ol>
     <div class="container">
-        <h4>分类属性管理
+        <h4>分类属性管理 - (${c.name})
             <!--模态框按钮-->
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProperty">添加属性</button>
         </h4>
