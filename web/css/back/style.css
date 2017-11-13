@@ -204,34 +204,38 @@
     left: 0;
     background: #ccc;
 }
-
+@media (max-width: 700px) {
+    div.editPVDiv {
+        width: 533px;
+    }
+}
 div.editPVDiv {
     width: 800px;
-    margin: 0 auto;
-
+    margin: 50px auto;
 }
 
 span.pvName {
     display: inline-block;
-    width: 100px;
-    color: #555555;
-    font-size: 16px;
-    /* 	font-weight:bold; */
-    margin-left: 20px;
+    width: 80px;
+    color: #3f3f3f;
+    font-size: 15px;
+    margin-left: 10px;
 }
 
 span.pvValue {
     display: inline-block;
-    width: 200px;
-    border: 1px solid lightgray;
     padding: 0px;
 }
-
-span.pvValue input {
-    border-width: 0px;
+span input[type="text"] {
+    outline: none;
+    height: 40px;
+    text-indent: 1em;
+    border: 1px solid #DADADA;
+    padding: 10px;
+    margin: 10px;
+    color: #6d6d6d;
+    box-shadow: inset 0px 1px 6px #ECF3F5;
+    width: 150px;
 }
 
-div.eachPV {
-    float: left;
-    margin: 5px;
-}
+

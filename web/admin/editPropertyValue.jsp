@@ -7,23 +7,28 @@
 <title>编辑产品属性值</title>
 
 <script>
-  $("input.pvValue").keyup(function () {
-    var value = $(this).val();
-    var page = "admin_product_updatePropertyValue";
-    var pvid = $(this).attr("pvid");
-    var parentSpan = $(this).parent("span");
-    parentSpan.css("border", "1px solid yellow");
-    $.post(
-        page,
-        {"value": value, "pvid": pvid},
-        function (result) {
-          if ("success" == result)
-            parentSpan.css("border", "1px solid green");
-          else
-            parentSpan.css("border", "1px solid red");
-        }
-    );
+  $(document).ready(function () {
+    $("input.pvValue").keyup(function () {
+      var value = $(this).val();
+      var page = "admin_product_updatePropertyValue";
+      var pvid = $(this).attr("pvid");
+      var parentSpan = $(this);
+      $.post(
+          page,
+          {"value": value, "pvid": pvid},
+          function (result) {
+            if ("success" == result) {
+              parentSpan.css("border", "1px solid green");
+              parentSpan.css("input::after", "content:'success'");
+            }
+            else {
+              parentSpan.css("border", "1px solid red");
+            }
+          }
+      );
+    });
   });
+
 </script>
 
 <div class="container">
@@ -34,12 +39,10 @@
     <li class="active">编辑产品属性</li>
   </ol>
 
-  <div class="container">
-    <div class="eachPV">
-      <c:forEach items="${propertyValue_list}" var="pvl">
-        <span class="pvName">${pvl.property.name}</span>
-        <span class="pvValue"><input class="pvValue" type="text" pvid="${pvl.id}" value="${pvl.value}"></span>
-      </c:forEach>
-    </div>
+  <div class="editPVDiv">
+    <c:forEach items="${propertyValue_list}" var="pvl" varStatus="status">
+      <span class="pvName">${pvl.property.name}</span>
+      <span class="pvValue"><input class="pvValue" type="text" pvid="${pvl.id}" value="${pvl.value}"></span>
+    </c:forEach>
   </div>
 </div>

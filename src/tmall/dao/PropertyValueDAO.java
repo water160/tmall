@@ -11,12 +11,12 @@ import java.util.List;
 
 public class PropertyValueDAO {
 
-    public int getTotal() {
+    public int getTotal(int pid) {
         int total = 0;
 
         try (Connection conn = DBUtil.getConnection();
              Statement stmt = conn.createStatement()) {
-            String sql = "select count(*) from PropertyValue";
+            String sql = "select count(*) from PropertyValue WHERE pid = " + pid;
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 total = rs.getInt(1);
