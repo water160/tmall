@@ -9,14 +9,14 @@ import java.sql.Timestamp;
 public class DateUtil {
 
     public static Timestamp date2time(Date date) {
-        if(date == null) {
+        if (date == null) {
             return null;
         }
         return new Timestamp(date.getTime());
     }
 
     public static Date time2date(Timestamp timestamp) {
-        if(timestamp == null) {
+        if (timestamp == null) {
             return null;
         }
         return new Date(timestamp.getTime());

@@ -30,7 +30,7 @@ public class PropertyServlet extends BaseBackServlet {
         Property property = propertyDAO.getPropertyById(id);
         propertyDAO.delete(id);
 
-        return "@admin_property_list?cid="+property.getCategory().getId();
+        return "@admin_property_list?cid=" + property.getCategory().getId();
     }
 
     @Override

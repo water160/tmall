@@ -2,13 +2,11 @@ package tmall.servlet;
 
 import tmall.bean.Category;
 import tmall.bean.Product;
-import tmall.bean.Property;
 import tmall.util.Page;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductServlet extends BaseBackServlet {
