@@ -2,6 +2,7 @@ package tmall.servlet;
 
 import tmall.bean.Category;
 import tmall.bean.Product;
+import tmall.bean.PropertyValue;
 import tmall.util.Page;
 
 import javax.servlet.http.HttpServletRequest;
@@ -94,5 +95,29 @@ public class ProductServlet extends BaseBackServlet {
         request.setAttribute("page", page);
 
         return "admin/listProduct.jsp";
+    }
+
+    public String editPropertyValue(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productDAO.getProductById(id);
+        request.setAttribute("product", product);
+
+        //初始化propertyValueList，由某产品ID和某产品属性ID查询出来，如果数据库中没有对应的的属性值就添加进去
+        propertyValueDAO.init(product);
+
+        List<PropertyValue> propertyValue_list = propertyValueDAO.list(product.getId());
+
+        request.setAttribute("propertyValue_list", propertyValue_list);
+        return "admin/editPropertyValue.jsp";
+    }
+
+    public String updatePropertyValue(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int pvid = Integer.parseInt(request.getParameter("pvid"));
+        String value = request.getParameter("value");
+
+        PropertyValue propertyValue = propertyValueDAO.getPropertyValueById(pvid);
+        propertyValue.setValue(value);
+        propertyValueDAO.update(propertyValue);
+        return "%success";
     }
 }
