@@ -40,7 +40,7 @@ public class ImageUtil {
         try {
             BufferedImage bufferedImage = null;
             bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-            bufferedImage.getGraphics().drawImage(srcImage.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
+            bufferedImage.getGraphics().drawImage(srcImage.getScaledInstance(width, height, Image.SCALE_SMOOTH), 0, 0, null);
             return bufferedImage;
         } catch (Exception e) {
             e.printStackTrace();

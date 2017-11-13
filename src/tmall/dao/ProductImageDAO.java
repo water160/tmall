@@ -33,9 +33,12 @@ public class ProductImageDAO {
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            conn.setAutoCommit(false);
             pstmt.setInt(1, bean.getProduct().getId());
             pstmt.setString(2, bean.getType());
             pstmt.execute();
+            conn.commit();
+            conn.setAutoCommit(true);
 
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
@@ -56,7 +59,10 @@ public class ProductImageDAO {
         try (Connection conn = DBUtil.getConnection();
              Statement stmt = conn.createStatement()) {
             String sql = "delete from productimage where id = " + id;
+            conn.setAutoCommit(false);
             stmt.execute(sql);
+            conn.commit();
+            conn.setAutoCommit(true);
         } catch (SQLException e) {
             e.printStackTrace();
         }
