@@ -210,13 +210,13 @@
     }
 }
 div.editPVDiv {
-    width: 800px;
+    width: 850px;
     margin: 50px auto;
 }
 
 span.pvName {
     display: inline-block;
-    width: 80px;
+    width: 90px;
     color: #3f3f3f;
     font-size: 15px;
     margin-left: 10px;
@@ -224,18 +224,19 @@ span.pvName {
 
 span.pvValue {
     display: inline-block;
+    width: 300px;
     padding: 0px;
 }
 span input[type="text"] {
     outline: none;
+    width: 230px;
     height: 40px;
-    text-indent: 1em;
+    text-indent: .3em;
     border: 1px solid #DADADA;
     padding: 10px;
     margin: 10px;
     color: #6d6d6d;
     box-shadow: inset 0px 1px 6px #ECF3F5;
-    width: 150px;
 }
 
 

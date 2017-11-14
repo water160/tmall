@@ -9,7 +9,7 @@
         <ul class="nav navbar-nav">
           <li><a href="admin_category_list">分类管理</a></li>
           <li><a href="admin_user_list">用户管理</a></li>
-          <li><a href="dmin_order_list">订单管理</a></li>
+          <li><a href="admin_order_list">订单管理</a></li>
         </ul>
       </div>
     </div>
