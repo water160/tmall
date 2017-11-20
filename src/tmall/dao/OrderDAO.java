@@ -8,6 +8,7 @@ import tmall.util.DateUtil;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 public class OrderDAO {
 
@@ -47,10 +48,10 @@ public class OrderDAO {
             pstmt.setString(4, bean.getReceiver());
             pstmt.setString(5, bean.getMobile());
             pstmt.setString(6, bean.getUserMessage());
-            pstmt.setTimestamp(7, DateUtil.date2time((Date) bean.getCreateDate()));
-            pstmt.setTimestamp(8, DateUtil.date2time((Date) bean.getPayDate()));
-            pstmt.setTimestamp(9, DateUtil.date2time((Date) bean.getDeliveryDate()));
-            pstmt.setTimestamp(10, DateUtil.date2time((Date) bean.getConfirmDate()));
+            pstmt.setTimestamp(7, DateUtil.date2time( bean.getCreateDate()));
+            pstmt.setTimestamp(8, DateUtil.date2time( bean.getPayDate()));
+            pstmt.setTimestamp(9, DateUtil.date2time( bean.getDeliveryDate()));
+            pstmt.setTimestamp(10, DateUtil.date2time( bean.getConfirmDate()));
             pstmt.setInt(11, bean.getUser().getId());
             pstmt.setString(12, bean.getStatus());
             pstmt.execute();
@@ -78,10 +79,10 @@ public class OrderDAO {
             pstmt.setString(3, bean.getReceiver());
             pstmt.setString(4, bean.getMobile());
             pstmt.setString(5, bean.getUserMessage());
-            pstmt.setTimestamp(6, DateUtil.date2time((Date) bean.getCreateDate()));
-            pstmt.setTimestamp(7, DateUtil.date2time((Date) bean.getPayDate()));
-            pstmt.setTimestamp(8, DateUtil.date2time((Date) bean.getDeliveryDate()));
-            pstmt.setTimestamp(9, DateUtil.date2time((Date) bean.getConfirmDate()));
+            pstmt.setTimestamp(6, DateUtil.date2time( bean.getCreateDate()));
+            pstmt.setTimestamp(7, DateUtil.date2time( bean.getPayDate()));
+            pstmt.setTimestamp(8, DateUtil.date2time( bean.getDeliveryDate()));
+            pstmt.setTimestamp(9, DateUtil.date2time( bean.getConfirmDate()));
             pstmt.setString(10, bean.getOrderCode());
             pstmt.setInt(11, bean.getUser().getId());
             pstmt.setString(12, bean.getStatus());

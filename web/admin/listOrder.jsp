@@ -10,24 +10,32 @@
       $("tr.orderPageOrderItemTR[oid="+oid+"]").toggle();
     });
   });
+  $(function () {
+    $("button.delivery").click(function () {
+      var confirmDelivery = confirm("确认发货?");
+      if(confirmDelivery)
+        return true;
+      return false;
+    });
+  });
 </script>
 
 <title>订单管理</title>
 <div class="container">
   <h3>订单管理</h3>
   <table class="table table-responsive table-bordered">
-    <thead class="text-success">
+    <thead class="success">
     <tr>
-      <th>订单ID</th>
+      <th width="70px">订单ID</th>
       <th>订单号</th>
-      <th>状态</th>
+      <th width="70px">状态</th>
       <th>金额</th>
       <th width="75px">商品数量</th>
       <th width="100px">买家名称</th>
-      <th>创建时间</th>
-      <th>支付时间</th>
-      <th>发货时间</th>
-      <th>确认收货时间</th>
+      <th width="90px">创建时间</th>
+      <th width="90px">支付时间</th>
+      <th width="90px">发货时间</th>
+      <th width="120px">确认收货时间</th>
       <th width="120px">操作</th>
     </tr>
     </thead>
@@ -51,7 +59,7 @@
 
           <c:if test="${o.status=='waitDelivery'}">
             <a href="admin_order_delivery?id=${o.id}">
-              <button class="btn btn-primary btn-xs">发货</button>
+              <button class="delivery btn btn-primary btn-xs">发货</button>
             </a>
           </c:if>
         </td>
@@ -63,7 +71,7 @@
             <c:forEach items="${o.orderItemList}" var="oi">
               <tr>
                 <td width="8%">
-                  <img width="40px" height="40px" src="img/productSingle/${oi.product.firstProductImage.id}.jpg">
+                  <a href="img/productSingle/${oi.product.firstProductImage.id}.jpg" target="_blank"><img width="40px" height="40px" src="img/productSingle/${oi.product.firstProductImage.id}.jpg"></a>
                 </td>
 
                 <td width="42%">
