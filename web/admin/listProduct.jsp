@@ -36,16 +36,16 @@
   <table class="table table-hover table-responsive table-bordered">
     <thead class="text-success">
     <tr>
-      <th width="4%">ID</th>
-      <th width="22%">产品名称</th>
-      <th width="14%">产品小标题</th>
-      <th width="10%">产品图片</th>
-      <th width="6%">原价格</th>
-      <th width="6%">折扣价</th>
-      <th width="6%">库存量</th>
-      <th width="10%">产品图片管理</th>
-      <th width="9%">属性值设置</th>
-      <th width="9%">创建时间</th>
+      <th width="25px">ID</th>
+      <th width="220px">产品名称</th>
+      <th width="140px">产品小标题</th>
+      <th width="80px">产品图片</th>
+      <th width="50px">原价格</th>
+      <th width="50px">折扣价</th>
+      <th width="60px">库存量</th>
+      <th width="110px">产品图片管理</th>
+      <th width="100px">属性值设置</th>
+      <th width="150px">创建时间</th>
       <th colspan="2" class="center">操作</th>
     </tr>
     </thead>
@@ -71,7 +71,7 @@
           <a href="admin_product_editPropertyValue?id=${p.id}">
             <span class="glyphicon glyphicon-th-list"></span> 属性设置</a>
         </td>
-        <td>${p.createDate}</td>
+        <td><fmt:formatDate value="${p.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
         <td>
           <a class href="admin_product_edit?id=${p.id}">
             <span class="glyphicon glyphicon-edit"></span></a>

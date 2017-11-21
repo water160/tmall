@@ -15,6 +15,6 @@ public class ForeServlet extends BaseForeServlet {
         new ProductDAO().fill(c_list);//为所有分类填充产品集合
         new ProductDAO().fillByRow(c_list);//Category中的productListByRow【List<List<Product>>】被填充，一行8个
         request.setAttribute("c_list", c_list);
-        return "home.jsp";
+        return "front/home.jsp";
     }
 }
