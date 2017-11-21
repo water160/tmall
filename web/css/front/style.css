@@ -38,6 +38,24 @@ nav.top span {
   margin-right: 20px;
 }
 
+input[type="text"], input[type="password"] {
+  border: 1px solid #DADADA;
+  color: #888;
+  outline: 0 none;
+  padding: 3px 3px 3px 5px;
+  width: 70%;
+  font-size: 12px;
+  line-height:15px;
+  box-shadow: inset 0px 1px 4px #ECECEC;
+  -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+  -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border: 1px solid #C40000;
+}
+
 nav.top span, nav.top a {
   color: #999;
   margin: 0px 10px 0px 10px;
@@ -2124,12 +2142,17 @@ table.registerTable {
   color: #3C3C3C;
   font-size: 16px;
   table-layout: fixed;
-  margin-top: 50px;
 }
 
 table.registerTable td {
   /* 	border:1px dotted skyblue !important; */
   padding: 10px 30px;
+}
+
+td.registerTableMiddleTD {
+  font-size: 16px;
+  color: #C40000;
+  text-align: center;
 }
 
 td.registerTableLeftTD {
@@ -2167,7 +2190,10 @@ table.registerTable button {
 }
 
 table.registerTable {
-
+  border-top: 1px solid #e7e7e7;
+  border-right: 1px solid #e7e7e7;
+  border-left: 1px solid #e7e7e7;
+  border-shadow: 2px solid #333;
 }
 
 div.registerSuccessDiv {

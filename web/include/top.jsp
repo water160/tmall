@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
 <nav class="top ">
-  <a href="${contextPath}">
+  <a href="forehome">
     <span style="color:#C40000;margin:0px" class=" glyphicon glyphicon-home redColor"></span>
     天猫首页
   </a>
@@ -14,8 +14,8 @@
   </c:if>
 
   <c:if test="${empty user}">
-    <a href="login.jsp">请登录</a>
-    <a href="register.jsp">免费注册</a>
+    <a href="../front/login.jsp">请登录</a>
+    <a href="../front/register.jsp">免费注册</a>
   </c:if>
 
   <span class="pull-right">
