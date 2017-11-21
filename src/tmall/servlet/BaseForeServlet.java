@@ -24,9 +24,12 @@ public class BaseForeServlet extends HttpServlet {
             int start = 0;
             int count = 10;
             try {
-                start = Integer.parseInt((request.getParameter("page.start")));
+                if(request.getParameter("page.start").equals(null)) {
+                    start = 0;
+                } else {
+                    start = Integer.parseInt((request.getParameter("page.start")));
+                }
             } catch (Exception e) {
-                e.printStackTrace();
             }
             Page page = new Page(start, count);
             //从ForeFilter拦截以/fore不以/foreServlet开头的url，然后获取到传过来的/forehome中的home方法，然后反射机制调用ForeServlet中的home方法，最后跳转到home.jsp
