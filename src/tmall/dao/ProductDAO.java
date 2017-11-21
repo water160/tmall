@@ -246,6 +246,16 @@ public class ProductDAO {
     }
 
     /**
+     * 为一些分类填充产品集合
+     * @param c_list
+     */
+    public void fill(List<Category> c_list) {
+        for(Category c : c_list) {
+            fill(c);
+        }
+    }
+
+    /**
      * 便于首页显示，针对每个类别都加入一个List<List<Product>>，用于首页展示
      *
      * @param categoryList
@@ -253,7 +263,7 @@ public class ProductDAO {
     public void fillByRow(List<Category> categoryList) {
         int productNumberEachRow = 8;
         for (Category category : categoryList) {
-            List<Product> products = category.getProductList();
+            List<Product> products = category.getProductList();//获取一个分类下的所有产品
             List<List<Product>> productsByRow = new ArrayList<>();
 
             for (int i = 0; i < products.size(); i += productNumberEachRow) {
