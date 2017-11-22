@@ -51,4 +51,9 @@ public class ForeServlet extends BaseForeServlet {
         request.getSession().setAttribute("user", user);
         return "@/forehome";
     }
+
+    public String logout(HttpServletRequest request, HttpServletResponse response, Page page) {
+        request.getSession().removeAttribute("user");
+        return "@/forehome";
+    }
 }
