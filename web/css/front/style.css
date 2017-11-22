@@ -38,24 +38,6 @@ nav.top span {
   margin-right: 20px;
 }
 
-input[type="text"], input[type="password"] {
-  border: 1px solid #DADADA;
-  color: #888;
-  outline: 0 none;
-  padding: 3px 3px 3px 5px;
-  width: 70%;
-  font-size: 12px;
-  line-height:15px;
-  box-shadow: inset 0px 1px 4px #ECECEC;
-  -moz-box-shadow: inset 0px 1px 4px #ECECEC;
-  -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border: 1px solid #C40000;
-}
-
 nav.top span, nav.top a {
   color: #999;
   margin: 0px 10px 0px 10px;
@@ -427,6 +409,10 @@ div.simpleLogo {
   padding: 32px 0px;
 }
 
+div.simpleLogo img {
+  margin-left: 200px;
+}
+
 img.loginBackgroundImg {
   display: block;
   margin: 0px auto;
@@ -470,23 +456,27 @@ div.loginErrorMessageDiv div.alert {
 
 div.login_acount_text {
   color: #3C3C3C;
-  font-size: 16px;
+  font-size: 1.2em;
   font-weight: bold;
 }
 
 div.loginInput {
   border: 1px solid #CBCBCB;
+  box-shadow: inset 0px 1px 4px #ECECEC;
   margin: 20px 0px;
 }
 
 div.loginInput input {
   display: inline-block;
   border: 0px solid transparent;
-  width: 244px;
+  outline: 0 none;
+  line-height: 30px;
   height: 30px;
-  position: relative;
-  left: 6px;
-  top: 6px;
+  padding: 2px 0 2px 10px;
+  width: 254px;
+  float: none;
+  overflow: hidden;
+  font-size: 1em;
 }
 
 div.loginInput span, div.loginInput input {
@@ -511,7 +501,7 @@ span.loginInputIcon span.glyphicon {
 button.redButton {
   color: white;
   background-color: #C40000;
-  font-size: 14px;
+  font-size: 1.3em;
   font-weight: bold;
 }
 
@@ -2163,6 +2153,25 @@ td.registerTableLeftTD {
 td.registerTableRightTD {
   width: 300px;
   text-align: left;
+}
+
+td.registerTableRightTD input[type="text"],
+td.registerTableRightTD input[type="password"] {
+  border: 1px solid #DADADA;
+  color: #888;
+  outline: 0 none;
+  padding: 3px 3px 3px 5px;
+  width: 100%;
+  font-size: 12px;
+  line-height:15px;
+  box-shadow: inset 0px 1px 4px #ECECEC;
+  -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+  -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+}
+
+td.registerTableRightTD input[type="text"]:focus,
+td.registerTableRightTD input[type="password"]:focus {
+  border: 1px solid #C40000;
 }
 
 td.registerTip {
