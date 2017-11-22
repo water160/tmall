@@ -64,13 +64,13 @@
     </div>
 
     <div class="rightMenu">
-      <span><a href=""><img src="img/site/chaoshi.png"/></a></span>
-      <span><a href=""><img src="img/site/guoji.png"/></a></span>
+      <span><a href=""><img src="../../img/site/chaoshi.png"/></a></span>
+      <span><a href=""><img src="../../img/site/guoji.png"/></a></span>
 
       <c:forEach items="${cs}" var="c" varStatus="st">
         <c:if test="${st.count<=4}">
 				<span>
-				<a href="forecategory?cid=${c.id}">
+				<a href="/forecategory?cid=${c.id}">
             ${c.name}
         </a></span>
         </c:if>
