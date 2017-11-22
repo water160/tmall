@@ -45,14 +45,14 @@
 
     <table class="registerTable" align="center">
       <tr>
-        <td class="registerTip registerTableMiddleTD" colspan="2">设置会员名</td>
+        <td class="registerTip login_acount_text" colspan="2">设置会员名</td>
       </tr>
       <tr>
         <td class="registerTableLeftTD">登陆名</td>
         <td class="registerTableRightTD"><input id="name" name="name" type="text" placeholder="会员名一旦设置成功，无法修改"></td>
       </tr>
       <tr>
-        <td class="registerTip registerTableMiddleTD" colspan="2">设置登陆密码，登陆时验证，保护账号信息</td>
+        <td class="registerTip login_acount_text" colspan="2">设置登陆密码，登陆时验证，保护账号信息</td>
       </tr>
       <tr>
         <td class="registerTableLeftTD">登陆密码</td>
