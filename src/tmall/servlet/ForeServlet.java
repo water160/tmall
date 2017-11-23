@@ -1,10 +1,10 @@
 package tmall.servlet;
 
 import org.springframework.web.util.HtmlUtils;
-import tmall.bean.Category;
-import tmall.bean.User;
+import tmall.bean.*;
 import tmall.dao.CategoryDAO;
 import tmall.dao.ProductDAO;
+import tmall.dao.ProductImageDAO;
 import tmall.util.Page;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,5 +55,27 @@ public class ForeServlet extends BaseForeServlet {
     public String logout(HttpServletRequest request, HttpServletResponse response, Page page) {
         request.getSession().removeAttribute("user");
         return "@/forehome";
+    }
+
+    public String product(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        Product product = productDAO.getProductById(pid);
+        //获取产品单个图片和详情图片
+        List<ProductImage> productSingleImages = productImageDAO.list(product, ProductImageDAO.typeSingle);
+        List<ProductImage> productDetailImages = productImageDAO.list(product, ProductImageDAO.typeDetail);
+        product.setProductSingleImages(productSingleImages);
+        product.setProductDetailImages(productDetailImages);
+
+        List<PropertyValue> pv_list = propertyValueDAO.list(pid);//获取产品的属性值
+
+        List<Review> reviews = reviewDAO.list(pid);//获取产品的评论
+
+        productDAO.setSaleAndReviewNumber(product);//获取产品的销量和评论数，利用OrderItemDAO中此pid的number和review
+
+        request.setAttribute("reviews", reviews);
+        request.setAttribute("product", product);
+        request.setAttribute("pv_list", pv_list);
+
+        return "/front/product.jsp";
     }
 }

@@ -293,7 +293,7 @@ public class ProductDAO {
      * @param product
      */
     public void setSaleAndReviewNumber(Product product) {
-        int saleCount = new OrderItemDAO().getSaleCount(product.getId());
+        int saleCount = new OrderItemDAO().getSaleCount(product.getId());//通过pid在订单项中获取number数的和
         product.setSaleCount(saleCount);
 
         int reviewCount = new ReviewDAO().getTotal(product.getId());
