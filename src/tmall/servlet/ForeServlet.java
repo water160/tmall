@@ -9,6 +9,7 @@ import tmall.util.Page;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class ForeServlet extends BaseForeServlet {
@@ -77,5 +78,27 @@ public class ForeServlet extends BaseForeServlet {
         request.setAttribute("pv_list", pv_list);
 
         return "/front/product.jsp";
+    }
+
+    public String checkLogin(HttpServletRequest request, HttpServletResponse response, Page page) {
+        User user = (User) request.getSession().getAttribute("user");
+        if(user != null) {
+            return "%success";
+        }
+        return "%fail";
+    }
+
+    public String loginAjax(HttpServletRequest request, HttpServletResponse response, Page page) {
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        PrintWriter pw = null;
+        User user = userDAO.userLogin(name, password);
+
+        if(user == null) {
+            request.setAttribute("msg", "账号密码错误");
+            return "%fail";
+        }
+        request.getSession().setAttribute("user", user);
+        return "%success";
     }
 }
