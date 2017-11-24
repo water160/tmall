@@ -125,7 +125,7 @@ public class ReviewDAO {
                 int uid = rs.getInt("uid");
                 String content = rs.getString("content");
                 Product product = new ProductDAO().getProductById(pid);
-                User user = new UserDAO().get(uid);
+                User user = new UserDAO().getUserById(uid);
                 Date createDate = DateUtil.time2date(rs.getTimestamp("createDate"));
 
                 bean = new Review();
@@ -166,7 +166,7 @@ public class ReviewDAO {
                 Date createDate = DateUtil.time2date(rs.getTimestamp("createDate"));
                 String content = rs.getString("content");
                 Product product = new ProductDAO().getProductById(pid);
-                User user = new UserDAO().get(uid);
+                User user = new UserDAO().getUserById(uid);
 
                 bean.setContent(content);
                 bean.setCreateDate(createDate);

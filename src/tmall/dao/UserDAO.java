@@ -16,37 +16,15 @@ public class UserDAO {
      */
     public int getTotal() {
         int total = 0;
-        Connection conn = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            conn = DBUtil.getConnection();
-            stmt = conn.createStatement();
-            String sql = "SELECT count(*) FROM user";
-            rs = stmt.executeQuery(sql);
-            if (rs.next()) {
+        try(Connection conn = DBUtil.getConnection(); Statement stmt = conn.createStatement();) {
+            String sql = "select count(*) fron user";
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()) {
                 total = rs.getInt(1);
             }
         } catch (SQLException e) {
             System.out.println("Can't get Total(UserDAO)");
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                    rs = null;
-                }
-                if (stmt != null) {
-                    stmt.close();
-                    stmt = null;
-                }
-                if (conn != null) {
-                    conn.close();
-                    conn = null;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return total;
     }
@@ -57,46 +35,23 @@ public class UserDAO {
      * @param user
      */
     public void add(User user) {
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        String sql = "INSERT INTO user values(null, ?, ?)";
-        try {
-            conn = DBUtil.getConnection();
+        String sql = "insert into user values(null ,? ,?)";
+        try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
             conn.setAutoCommit(false);
-            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user.getName());
             pstmt.setString(2, user.getPassword());
             pstmt.execute();
             conn.commit();
             conn.setAutoCommit(true);
 
-            rs = pstmt.getGeneratedKeys();
+            ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 int id = rs.getInt(1);
                 user.setId(id);
             }
-
         } catch (SQLException e) {
-            System.out.println("Can't add(UserDAO)");
+            System.out.println("Can't add User(UserDAO)");
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                    rs = null;
-                }
-                if (pstmt != null) {
-                    pstmt.close();
-                    pstmt = null;
-                }
-                if (conn != null) {
-                    conn.close();
-                    conn = null;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -106,36 +61,18 @@ public class UserDAO {
      * @param user
      */
     public void update(User user) {
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        String sql = "UPDATE user SET name = ?, password = ? WHERE id = ?";
-        try {
-            conn = DBUtil.getConnection();
+        String sql = "update user set name= ? , password = ? where id = ? ";
+        try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
             conn.setAutoCommit(false);
-            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user.getName());
             pstmt.setString(2, user.getPassword());
             pstmt.setInt(3, user.getId());
             pstmt.execute();
             conn.commit();
             conn.setAutoCommit(true);
-
         } catch (SQLException e) {
-            System.out.println("Can't update(UserDAO)");
+            System.out.println("Can't update User(UserDAO)");
             e.printStackTrace();
-        } finally {
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                    pstmt = null;
-                }
-                if (conn != null) {
-                    conn.close();
-                    conn = null;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -145,33 +82,12 @@ public class UserDAO {
      * @param id
      */
     public void delete(int id) {
-        Connection conn = null;
-        Statement stmt = null;
-        try {
-            conn = DBUtil.getConnection();
-            conn.setAutoCommit(false);
-            stmt = conn.createStatement();
-            String sql = "DELETE FROM user WHERE id = " + id;
+        try (Connection conn = DBUtil.getConnection(); Statement stmt = conn.createStatement();) {
+            String sql = "delete from user where id = " + id;
             stmt.execute(sql);
-            conn.commit();
-            conn.setAutoCommit(true);
-
         } catch (SQLException e) {
-            System.out.println("Can't delete(UserDAO)");
+            System.out.println("Can't delete User(UserDAO)");
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                    stmt = null;
-                }
-                if (conn != null) {
-                    conn.close();
-                    conn = null;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -181,44 +97,23 @@ public class UserDAO {
      * @param id
      * @return User user
      */
-    public User get(int id) {
+    public User getUserById(int id) {
         User user = null;
-        Connection conn = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            conn = DBUtil.getConnection();
-            stmt = conn.createStatement();
-            String sql = "SELECT * FROM user WHERE id = " + id;
-            rs = stmt.executeQuery(sql);
+        try (Connection conn = DBUtil.getConnection(); Statement stmt = conn.createStatement();) {
+            String sql = "select * from user where id = " + id;
+            ResultSet rs = stmt.executeQuery(sql);
+
             if (rs.next()) {
                 user = new User();
                 String name = rs.getString("name");
-                String password = rs.getString("password");
                 user.setName(name);
+                String password = rs.getString("password");
                 user.setPassword(password);
                 user.setId(id);
             }
         } catch (SQLException e) {
-            System.out.println("Can't get by id(UserDAO)");
+            System.out.println("Can't get User By ID(UserDAO)");
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                    rs = null;
-                }
-                if (stmt != null) {
-                    stmt.close();
-                    stmt = null;
-                }
-                if (conn != null) {
-                    conn.close();
-                    conn = null;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return user;
     }
@@ -233,47 +128,32 @@ public class UserDAO {
     public List<User> list(int start, int count) {
         List<User> user_list = new ArrayList<User>();
 
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        try {
-            conn = DBUtil.getConnection();
-            String sql = "SELECT * FROM user order by id desc limit ?, ?";
-            pstmt = conn.prepareStatement(sql);
+        String sql = "select * from user order by id desc limit ?,? ";
+
+        try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+
             pstmt.setInt(1, start);
             pstmt.setInt(2, count);
-            rs = pstmt.executeQuery();
+
+            ResultSet rs = pstmt.executeQuery();
+
             while (rs.next()) {
-                User user = new User();
+                User bean = new User();
                 int id = rs.getInt(1);
+
                 String name = rs.getString("name");
+                bean.setName(name);
                 String password = rs.getString("password");
-                user.setId(id);
-                user.setName(name);
-                user.setPassword(password);
-                user_list.add(user);
+                bean.setPassword(password);
+
+                bean.setId(id);
+                user_list.add(bean);
             }
         } catch (SQLException e) {
-            System.out.println("Can't get list by (start, count)(UserDAO)");
+            System.out.println("Can't list User start and count(UserDAO)");
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                    rs = null;
-                }
-                if (pstmt != null) {
-                    pstmt.close();
-                    pstmt = null;
-                }
-                if (conn != null) {
-                    conn.close();
-                    conn = null;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
+
         return user_list;
     }
 
@@ -305,15 +185,12 @@ public class UserDAO {
      */
     public User getUserByName(String name) {
         User user = null;
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        try {
-            conn = DBUtil.getConnection();
-            String sql = "SELECT * FROM user WHERE name = ?";
-            pstmt = conn.prepareStatement(sql);
+
+        String sql = "select * from user where name = ?";
+        try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, name);
-            rs = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
+
             if (rs.next()) {
                 user = new User();
                 int id = rs.getInt("id");
@@ -322,26 +199,10 @@ public class UserDAO {
                 user.setPassword(password);
                 user.setId(id);
             }
+
         } catch (SQLException e) {
-            System.out.println("Can't get user by name(UserDAO)");
+            System.out.println("Can't get User By name(UserDAO)");
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                    rs = null;
-                }
-                if (pstmt != null) {
-                    pstmt.close();
-                    pstmt = null;
-                }
-                if (conn != null) {
-                    conn.close();
-                    conn = null;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return user;
     }
@@ -355,16 +216,13 @@ public class UserDAO {
      */
     public User userLogin(String name, String password) {
         User user = null;
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        try {
-            conn = DBUtil.getConnection();
-            String sql = "SELECT * FROM user WHERE name = ? AND password = ?";
-            pstmt = conn.prepareStatement(sql);
+        String sql = "select * from user where name = ? and password = ?";
+
+        try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, name);
             pstmt.setString(2, password);
-            rs = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
+
             if (rs.next()) {
                 user = new User();
                 int id = rs.getInt("id");
@@ -372,26 +230,10 @@ public class UserDAO {
                 user.setPassword(password);
                 user.setId(id);
             }
+
         } catch (SQLException e) {
-            System.out.println("user Can't login(UserDAO)");
+            System.out.println("Can't check userLogin(UserDAO)");
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                    rs = null;
-                }
-                if (pstmt != null) {
-                    pstmt.close();
-                    pstmt = null;
-                }
-                if (conn != null) {
-                    conn.close();
-                    conn = null;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return user;
     }

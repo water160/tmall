@@ -145,7 +145,7 @@ public class OrderDAO {
                 bean.setPayDate(payDate);
                 bean.setDeliveryDate(deliveryDate);
                 bean.setConfirmDate(confirmDate);
-                User user = new UserDAO().get(uid);
+                User user = new UserDAO().getUserById(uid);
                 bean.setUser(user);
                 bean.setStatus(status);
             }
@@ -198,7 +198,7 @@ public class OrderDAO {
                 bean.setPayDate(payDate);
                 bean.setDeliveryDate(deliveryDate);
                 bean.setConfirmDate(confirmDate);
-                User user = new UserDAO().get(uid);
+                User user = new UserDAO().getUserById(uid);
                 bean.setUser(user);
                 bean.setStatus(status);
 
@@ -264,7 +264,7 @@ public class OrderDAO {
                 bean.setPayDate(payDate);
                 bean.setDeliveryDate(deliveryDate);
                 bean.setConfirmDate(confirmDate);
-                User user = new UserDAO().get(uid);
+                User user = new UserDAO().getUserById(uid);
                 bean.setStatus(status);
                 bean.setUser(user);
 

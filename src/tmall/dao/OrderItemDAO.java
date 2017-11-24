@@ -111,7 +111,7 @@ public class OrderItemDAO {
                 int uid = rs.getInt("uid");
                 int number = rs.getInt("number");
                 Product product = new ProductDAO().getProductById(pid);
-                User user = new UserDAO().get(uid);
+                User user = new UserDAO().getUserById(uid);
 
                 bean = new OrderItem();
                 bean.setId(id);
@@ -158,7 +158,7 @@ public class OrderItemDAO {
                     bean.setOrder(order);
                 }
 
-                User user = new UserDAO().get(uid);
+                User user = new UserDAO().getUserById(uid);
                 bean.setProduct(product);
                 bean.setUser(user);
                 bean.setNumber(number);
@@ -200,7 +200,7 @@ public class OrderItemDAO {
                     bean.setOrder(order);
                 }
 
-                User user = new UserDAO().get(uid);
+                User user = new UserDAO().getUserById(uid);
                 bean.setProduct(product);
 
                 bean.setUser(user);
@@ -271,7 +271,7 @@ public class OrderItemDAO {
                     bean.setOrder(order);
                 }
 
-                User user = new UserDAO().get(uid);
+                User user = new UserDAO().getUserById(uid);
                 bean.setProduct(product);
 
                 bean.setUser(user);
