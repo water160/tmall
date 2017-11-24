@@ -34,15 +34,17 @@
     });
 
     $(".addCartButton").removeAttr("disabled");
+
+    //监听“加入购物车”按钮
     $(".addCartLink").click(function () {
-      var page = "/forecheckLogin";
+      var page = "forecheckLogin";
       $.get(
           page,
           function (result) {
             if ("success" == result) {
               var pid = ${product.id};
               var num = $(".productNumberSetting").val();
-              var addCartpage = "/foreaddCart";
+              var addCartpage = "foreaddCart";
               $.get(
                   addCartpage,
                   {"pid": pid, "num": num},
@@ -55,7 +57,6 @@
                       $(".addCartButton").css("color", "black")
                     }
                     else {
-
                     }
                   }
               );
@@ -67,8 +68,10 @@
       );
       return false;
     });
+
+    //监听“立即购买”按钮
     $(".buyLink").click(function () {
-      var page = "/forecheckLogin";
+      var page = "forecheckLogin";
       $.get(
           page,
           function (result) {
@@ -84,6 +87,7 @@
       return false;
     });
 
+    //模态框中的提交按钮，对用户名和密码进行ajax登录验证
     $("button.loginSubmitButton").click(function () {
       var name = $("#name").val();
       var password = $("#password").val();
@@ -94,7 +98,7 @@
         return false;
       }
 
-      var page = "/foreloginAjax";
+      var page = "foreloginAjax";
       $.get(
           page,
           {"name": name, "password": password},
@@ -108,7 +112,6 @@
             }
           }
       );
-
       return true;
     });
 
