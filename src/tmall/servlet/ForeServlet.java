@@ -2,6 +2,7 @@ package tmall.servlet;
 
 import org.springframework.web.util.HtmlUtils;
 import tmall.bean.*;
+import tmall.comparator.*;
 import tmall.dao.CategoryDAO;
 import tmall.dao.ProductDAO;
 import tmall.dao.ProductImageDAO;
@@ -10,6 +11,7 @@ import tmall.util.Page;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.List;
 
 public class ForeServlet extends BaseForeServlet {
@@ -100,5 +102,37 @@ public class ForeServlet extends BaseForeServlet {
         }
         request.getSession().setAttribute("user", user);
         return "%success";
+    }
+
+    public String category(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int cid = Integer.parseInt(request.getParameter("cid"));
+
+        Category category = new CategoryDAO().getCategoryById(cid);
+        new ProductDAO().fill(category);//category中有一个productList
+        new ProductDAO().setSaleAndReviewNumber(category.getProductList());
+
+        String sort = request.getParameter("sort");
+        if(sort != null) {
+            switch (sort) {
+                case "review":
+                    Collections.sort(category.getProductList(), new ProductReviewComparator());
+                    break;
+                case "date":
+                    Collections.sort(category.getProductList(), new ProductDateComparator());
+                    break;
+                case "saleCount":
+                    Collections.sort(category.getProductList(), new ProductSaleCountComparator());
+                    break;
+                case "price":
+                    Collections.sort(category.getProductList(), new ProductPriceComparator());
+                    break;
+                case "all":
+                    Collections.sort(category.getProductList(), new ProductAllComparator());
+                    break;
+            }
+        }
+
+        request.setAttribute("category", category);
+        return "/front/category.jsp";
     }
 }
