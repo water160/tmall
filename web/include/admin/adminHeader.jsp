@@ -37,6 +37,11 @@
         $("#" + id)[0].focus();
         return false;
       }
+      if (value < 0) {
+        alert(name + "必须大于等于0");
+        $("#" + id)[0].focus();
+        return false;
+      }
 
       return true;
     }
@@ -53,7 +58,11 @@
         $("#" + id)[0].focus();
         return false;
       }
-
+      if(value < 0) {
+        alert(name + "必须大于等于0")
+        $("#" + id)[0].focus();
+        return false;
+      }
       return true;
     }
 
