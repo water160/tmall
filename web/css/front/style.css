@@ -1157,11 +1157,13 @@ span.redStar {
 
 table.addressTable td input {
   border: 1px solid #AFAFAF;
+  outline: 0 none;
   width: 200px;
 }
 
 table.addressTable td textarea {
   border: 1px solid #AFAFAF;
+  outline: 0 none;
   margin-bottom: 10px;
   width: 400px;
 }
@@ -1206,7 +1208,6 @@ table.productListTable {
 
 table.productListTable th {
   color: #999999;
-  font-family: ����;
   font-weight: normal;
   font-size: 12px;
   text-align: center;
@@ -1283,7 +1284,6 @@ td.orderItemFirstTD, td.orderItemLastTD {
 
 label.orderItemDeliveryLabel {
   color: #666666;
-  font-family: ����;
   font-size: 12px;
   font-weight: normal;
 }
