@@ -37,7 +37,7 @@ public class OrderItemDAO {
             conn.setAutoCommit(false);
             pstmt.setInt(1, bean.getProduct().getId());
             //订单项在创建的时候，是没有订单信息的，设置为-1
-            if (bean.getOrder() == null) {
+            if (bean.getOrder() == null) {//如果该订单项没有对应的订单，说明在购物车中
                 pstmt.setInt(2, -1);
             } else {
                 pstmt.setInt(2, bean.getOrder().getId());

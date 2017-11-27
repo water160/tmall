@@ -16,6 +16,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class ForeServlet extends BaseForeServlet {
+    /**
+     * 浏览器请求/forehome，用于跳转至首页
+     */
     public String home(HttpServletRequest request, HttpServletResponse response, Page page) {
         List<Category> c_list = new CategoryDAO().list();//列举所有分类
         new ProductDAO().fill(c_list);//为所有分类填充产品集合
@@ -24,6 +27,9 @@ public class ForeServlet extends BaseForeServlet {
         return "/front/home.jsp";
     }
 
+    /**
+     * 浏览器请求/foreregister，用于用户注册，接收参数：用户名和密码
+     */
     public String register(HttpServletRequest request, HttpServletResponse response, Page page) {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
@@ -42,6 +48,9 @@ public class ForeServlet extends BaseForeServlet {
         return "@/front/registerSuccess.jsp";
     }
 
+    /**
+     * 浏览器请求/forelogin，用于用户登录，接收参数：用户名和密码，并且注入一个user属性
+     */
     public String login(HttpServletRequest request, HttpServletResponse response, Page page) {
         String name = request.getParameter("name");
         name = HtmlUtils.htmlEscape(name);
@@ -56,11 +65,17 @@ public class ForeServlet extends BaseForeServlet {
         return "@/forehome";
     }
 
+    /**
+     * 浏览器请求/forelogout，用户退出，移除注入的user属性
+     */
     public String logout(HttpServletRequest request, HttpServletResponse response, Page page) {
         request.getSession().removeAttribute("user");
         return "@/forehome";
     }
 
+    /**
+     * 浏览器请求/foreproduct，用于用户注册，接收参数：产品ID，用于获取产品图片、价格、评论等信息
+     */
     public String product(HttpServletRequest request, HttpServletResponse response, Page page) {
         int pid = Integer.parseInt(request.getParameter("pid"));
         Product product = productDAO.getProductById(pid);
@@ -83,6 +98,9 @@ public class ForeServlet extends BaseForeServlet {
         return "/front/product.jsp";
     }
 
+    /**
+     * 浏览器请求/forecheckLogin，产品页面中“立即购买”和“加入购物车”按钮检查是否触发模态框用户登录，接收参数：user属性
+     */
     public String checkLogin(HttpServletRequest request, HttpServletResponse response, Page page) {
         User user = (User) request.getSession().getAttribute("user");
         if(user != null) {
@@ -91,6 +109,9 @@ public class ForeServlet extends BaseForeServlet {
         return "%fail";
     }
 
+    /**
+     * 浏览器请求/foreloginAjax，模态框用户登录，接收参数：用户名和密码，与login方法类似
+     */
     public String loginAjax(HttpServletRequest request, HttpServletResponse response, Page page) {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
@@ -105,6 +126,9 @@ public class ForeServlet extends BaseForeServlet {
         return "%success";
     }
 
+    /**
+     * 浏览器请求/forecategory，分类页面，用以展示此分类下的所有产品，可以选择排序方式，接受参数：分类ID
+     */
     public String category(HttpServletRequest request, HttpServletResponse response, Page page) {
         int cid = Integer.parseInt(request.getParameter("cid"));
 
@@ -145,7 +169,7 @@ public class ForeServlet extends BaseForeServlet {
     }
 
     /**
-     * 立即购买按钮，页面跳转至forebuy?pid=XXX&num=XXX，不保存状态
+     * ”立即购买“按钮，页面跳转至forebuy?pid=XXX&num=XXX，不保存状态
      */
     public String buyone(HttpServletRequest request, HttpServletResponse response, Page page) {
         int pid = Integer.parseInt(request.getParameter("pid"));
@@ -171,7 +195,7 @@ public class ForeServlet extends BaseForeServlet {
     }
 
     /**
-     * 加入购物车，页面跳转至buyAll.jsp，保存状态
+     * “加入购物车”按钮，用于形成购物车中的订单项，保存状态
      */
     //TODO:修改此处的增加销量策略，改为完成订单后才计算
     public String addCart(HttpServletRequest request, HttpServletResponse response, Page page) {
@@ -206,6 +230,9 @@ public class ForeServlet extends BaseForeServlet {
         return "%success";
     }
 
+    /**
+     * 购物车页面，后面页面会跳转至buyAll.jsp，
+     */
     public String cart(HttpServletRequest request, HttpServletResponse response, Page page) {
         User user = (User) request.getSession().getAttribute("user");
         List<OrderItem> oi_list = orderItemDAO.listByUser(user.getId());
@@ -213,6 +240,9 @@ public class ForeServlet extends BaseForeServlet {
         return "/front/cart.jsp";
     }
 
+    /**
+     * 结算页面，不同于”立即购买“后跳转的页面
+     */
     public String buyAll(HttpServletRequest request, HttpServletResponse response, Page page) {
         String[] oi_ids = request.getParameterValues("oiid");
         List<OrderItem> oi_buyAll_list = new ArrayList<>();
