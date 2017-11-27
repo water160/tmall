@@ -37,24 +37,31 @@
 
     //监听“加入购物车”按钮
     $(".addCartLink").click(function () {
-      var page = "forecheckLogin";
+      var page = "/forecheckLogin";
       $.get(
           page,
           function (result) {
             if ("success" == result) {
               var pid = ${product.id};
               var num = $(".productNumberSetting").val();
-              var addCartpage = "foreaddCart";
+              var addCartpage = "/foreaddCart";
               $.get(
                   addCartpage,
                   {"pid": pid, "num": num},
                   function (result) {
                     if ("success" == result) {
                       $(".addCartButton").html("已加入购物车");
-                      $(".addCartButton").attr("disabled", "disabled");
-                      $(".addCartButton").css("background-color", "lightgray")
-                      $(".addCartButton").css("border-color", "lightgray")
-                      $(".addCartButton").css("color", "black")
+                      $(".addCartButton").animate({
+                        background:'lightgray',
+                        border:'1px solid lightgray',
+                        color:'black'
+                      }, 500);
+                      $(".addCartButton").html("加入购物车");
+                      $(".addCartButton").animate({
+                        background:'#C40000',
+                        border:'1px solid #C40000',
+                        color:'white'
+                      }, 500);
                     }
                     else {
                     }
@@ -71,7 +78,7 @@
 
     //监听“立即购买”按钮
     $(".buyLink").click(function () {
-      var page = "forecheckLogin";
+      var page = "/forecheckLogin";
       $.get(
           page,
           function (result) {

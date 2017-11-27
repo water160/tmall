@@ -11,9 +11,9 @@
 
       num = parseInt(num);
       if (isNaN(num))
-        num = 1;
+        num = 0;
       if (num <= 0)
-        num = 1;
+        num = 0;
       $(this).val(num);
 
       var begin = $("input.beginPrice").val();
