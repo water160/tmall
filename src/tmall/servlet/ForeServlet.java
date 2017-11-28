@@ -358,4 +358,18 @@ public class ForeServlet extends BaseForeServlet {
         return "/front/payed.jsp";
     }
 
+    /**
+     * 显示订单页，包含各种状态的订单（未支付，待发货等）
+     */
+    public String bought(HttpServletRequest request, HttpServletResponse response, Page page) {
+        User user = (User) request.getSession().getAttribute("user");
+        if(user == null) {
+            return "/front/login.jsp";
+        }
+        List<Order> o_list = orderDAO.list(user.getId(), OrderDAO.delete);//列举出的订单不包含被“删除”的（实际上未被删除）
+        orderItemDAO.fill(o_list);
+        request.setAttribute("o_list", o_list);
+
+        return "/front/bought.jsp";
+    }
 }
