@@ -6,6 +6,7 @@ import tmall.util.Page;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 public class BaseForeServlet extends HttpServlet {
@@ -45,8 +46,11 @@ public class BaseForeServlet extends HttpServlet {
                 request.getRequestDispatcher(redirect).forward(request, response);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            try {
+                response.sendRedirect("/front/404.jsp");
+            } catch (IOException e1) {
+
+            }
         }
     }
 }

@@ -2298,10 +2298,45 @@ img.carouselImage {
 }
 
 div.noMatch {
-  font-size: 20px;
-  width: 200px;
+  font-size: 2em;
+  width: 400px;
   margin: 100px auto;
   color: #888;
+}
+div.noMatch a{
+  font-size: 1em;
+  color: #0280ef;
+  transition: color 0.3s;
+}
+div.noMatch a:hover{
+  color: #d04c3f;
+}
+
+div.noMatch a::before,
+div.noMatch a::after {
+  display: inline-block;
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+div.noMatch a::before {
+  margin-right: 10px;
+  content: '{';
+  transform: translateX(20px);
+}
+
+div.noMatch a::after {
+  margin-left: 10px;
+  content: '}';
+  transform: translateX(-20px);
+}
+
+div.noMatch a:hover::before,
+div.noMatch a:hover::after,
+div.noMatch a:focus::before,
+div.noMatch a:focus::after{
+  opacity: 1;
+  transform: translateX(0px);
 }
 
 table.cartProductTable th.operation{

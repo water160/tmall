@@ -161,6 +161,9 @@ public class ForeServlet extends BaseForeServlet {
         return "/front/category.jsp";
     }
 
+    /**
+     * 浏览器请求/foresearch，搜索页面，展现根据关键词搜索的产品，接受参数：关键词keyword
+     */
     public String search(HttpServletRequest request, HttpServletResponse response, Page page) {
         String keyword = request.getParameter("keyword");
         List<Product> p_list = new ProductDAO().search(keyword, 0, 32767);
@@ -259,6 +262,9 @@ public class ForeServlet extends BaseForeServlet {
         return "/front/buyAll.jsp";
     }
 
+    /**
+     * 购物车页面中修改产品项的个数
+     */
     public String changeOrderItem(HttpServletRequest request, HttpServletResponse response, Page page) {
         User user = (User) request.getSession().getAttribute("user");
         if(user == null) {
@@ -277,6 +283,9 @@ public class ForeServlet extends BaseForeServlet {
         return "%success";
     }
 
+    /**
+     * 购物车页面中删除某个产品项
+     */
     public String deleteOrderItem(HttpServletRequest request, HttpServletResponse response, Page page) {
         User user = (User) request.getSession().getAttribute("user");
         if(user == null) {
