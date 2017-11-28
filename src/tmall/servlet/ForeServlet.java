@@ -1,9 +1,11 @@
 package tmall.servlet;
 
+import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.web.util.HtmlUtils;
 import tmall.bean.*;
 import tmall.comparator.*;
 import tmall.dao.CategoryDAO;
+import tmall.dao.OrderDAO;
 import tmall.dao.ProductDAO;
 import tmall.dao.ProductImageDAO;
 import tmall.util.Page;
@@ -11,9 +13,8 @@ import tmall.util.Page;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class ForeServlet extends BaseForeServlet {
     /**
@@ -294,6 +295,67 @@ public class ForeServlet extends BaseForeServlet {
         int oiid = Integer.parseInt(request.getParameter("oiid"));
         orderItemDAO.delete(oiid);
         return "%success";
+    }
+
+    /**
+     * 结算页面中生成订单，跳转至支付宝处理
+     */
+    public String createOrder(HttpServletRequest request, HttpServletResponse response, Page page) {
+        User user = (User) request.getSession().getAttribute("user");
+
+        List<OrderItem> oi_buyAll_list = (List<OrderItem>) request.getSession().getAttribute("oi_buyAll_list");//buyAll方法中
+        if(oi_buyAll_list == null) {
+            return "@/forelogin";
+        }
+        //创建一个Order对象
+        String address = request.getParameter("address");
+        String post = request.getParameter("post");
+        String receiver = request.getParameter("receiver");
+        String mobile = request.getParameter("mobile");
+        String userMessage = request.getParameter("userMessage");
+
+        Order order = new Order();
+        String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + RandomUtils.nextInt(10000);
+        order.setOrderCode(orderCode);
+        order.setAddress(address);
+        order.setPost(post);
+        order.setReceiver(receiver);
+        order.setMobile(mobile);
+        order.setUserMessage(userMessage);
+        order.setCreateDate(new Date());
+        order.setUser(user);
+        order.setStatus(OrderDAO.waitPay);
+        orderDAO.add(order);
+
+        float orderTotal = 0.0F;
+        for(OrderItem oi : oi_buyAll_list) {//为每个产品项赋予这个订单对象
+            oi.setOrder(order);
+            orderItemDAO.update(oi);
+            orderTotal += oi.getProduct().getPromotePrice() * oi.getNumber();
+        }
+
+        return "@forealipay?oid=" + order.getId() + "&total=" + orderTotal;
+    }
+
+    /**
+     * 支付页面，需要额外添加支付宝的入口完成支付
+     */
+    //TODO: 未完成支付功能
+    public String alipay(HttpServletRequest request, HttpServletResponse response, Page page) {
+        return "/front/alipay.jsp";
+    }
+
+    /**
+     * 订单完成页面，即完成支付后的反馈
+     */
+    public String payed(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int oid = Integer.parseInt(request.getParameter("oid"));
+        Order order = orderDAO.getOrderById(oid);
+        order.setStatus(OrderDAO.waitDelivery);
+        order.setPayDate(new Date());
+        new OrderDAO().update(order);
+        request.setAttribute("order", order);
+        return "/front/payed.jsp";
     }
 
 }
