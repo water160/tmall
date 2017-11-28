@@ -277,7 +277,7 @@
               <a stock="${oi.product.stock}" pid="${oi.product.id}" class="numberPlus" href="#nowhere">+</a>
             </div>
           </td>
-          <td>
+          <td width="120px">
             <span class="cartProductItemSmallSumPrice" oiid="${oi.id}" pid="${oi.product.id}">
             ￥<fmt:formatNumber type="number" value="${oi.product.promotePrice*oi.number}" minFractionDigits="2"/></span>
           </td>

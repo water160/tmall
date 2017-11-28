@@ -46,6 +46,7 @@ public class BaseForeServlet extends HttpServlet {
                 request.getRequestDispatcher(redirect).forward(request, response);
 
         } catch (Exception e) {
+            e.printStackTrace();
             try {
                 response.sendRedirect("/front/404.jsp");
             } catch (IOException e1) {
