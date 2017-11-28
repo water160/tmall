@@ -242,4 +242,8 @@ span input[type="text"] {
     box-shadow: inset 0px 1px 6px #ECF3F5;
 }
 
-
+tr.OrderTitleTR {
+    border-top: 2px solid #00534b;
+    background: #f0fffa;
+    font-weight: bold;
+}

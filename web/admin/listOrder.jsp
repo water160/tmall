@@ -24,8 +24,8 @@
 <div class="container">
   <h3>订单管理</h3>
   <table class="table table-responsive table-bordered">
-    <thead class="success">
-    <tr>
+    <thead>
+    <tr class="text-success">
       <th width="70px">订单ID</th>
       <th>订单号</th>
       <th width="70px">状态</th>
@@ -41,7 +41,7 @@
     </thead>
     <tbody>
     <c:forEach items="${order_list}" var="o">
-      <tr>
+      <tr class="OrderTitleTR">
         <td>${o.id}</td>
         <td>${o.orderCode}</td>
         <td>${o.statusDesc}</td>
