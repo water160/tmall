@@ -71,7 +71,7 @@
 </script>
 <%
   List<Order> o_list = (List<Order>) request.getAttribute("o_list");
-  int waitPayNum = 0, waitDeliveryNum = 0, waitConfirm = 0, waitReview = 0;
+  int waitPayNum = 0, waitDeliveryNum = 0, waitConfirm = 0, waitReview = 0, finish = 0;
   for (Order order : o_list) {
     if (order.getStatus().equals("waitPay")) {
       waitPayNum++;
@@ -82,7 +82,7 @@
     } else if (order.getStatus().equals("waitReview")) {
       waitReview++;
     } else {
-      System.out.println(order.getStatus() + " no status fit!");
+      finish++;
     }
   }
 %>
@@ -92,8 +92,8 @@
     <div><a orderStatus="waitPay" href="#nowhere">待付款(<%=waitPayNum%>)</a></div>
     <div><a orderStatus="waitDelivery" href="#nowhere">待发货(<%=waitDeliveryNum%>)</a></div>
     <div><a orderStatus="waitConfirm" href="#nowhere">待收货(<%=waitConfirm%>)</a></div>
-    <div><a orderStatus="waitReview" href="#nowhere" class="noRightborder">待评价(<%=waitReview%>)</a></div>
-    <div class="orderTypeLastOne"><a class="noRightborder"> </a></div>
+    <div><a orderStatus="waitReview" href="#nowhere">待评价(<%=waitReview%>)</a></div>
+    <div><a orderStatus="finish" href="#nowhere">已完成(<%=finish%>)</a></div>
   </div>
   <div style="clear:both"></div>
   <div class="orderListTitle">
@@ -154,10 +154,10 @@
                       <button class="orderListItemReview">评价</button></a></span>
                   </c:if>
                   <c:if test="${o.status=='waitReview' and oi.isReviewed == 1}">
-                    <p>已评价</p>
+                    <span class="orderListItemReview">已评价</span>
                   </c:if>
                   <c:if test="${o.status=='finish'}">
-                    <p>该产品已评价</p>
+                    <span class="orderListItemReview">已评价</span>
                   </c:if>
                 </div>
               </div>
