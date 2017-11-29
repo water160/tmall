@@ -7,6 +7,7 @@ public class OrderItem {
     private Order order;
     private User user;
     private int number;
+    private int isReviewed = 0;
 
     public int getId() {
         return id;
@@ -46,5 +47,13 @@ public class OrderItem {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public int getIsReviewed() {
+        return isReviewed;
+    }
+
+    public void setIsReviewed(int isReviewed) {
+        this.isReviewed = isReviewed;
     }
 }
