@@ -442,12 +442,14 @@ public class ForeServlet extends BaseForeServlet {
         Order order = orderDAO.getOrderById(oid);
 
         List<OrderItem> oi_list = orderItemDAO.listByOrder(oid);
-        List<OrderItem> oi_reviewed_list = orderItemDAO.getReviewedList(oid);//订单里
-        if(oi_reviewed_list.size() < oi_list.size()) {//若订单中已评论的产品数小于总数，则不改变状态
-            OrderItem orderItem = orderItemDAO.getOrderItemById(oiid);
+        OrderItem orderItem = orderItemDAO.getOrderItemById(oiid);
+        if(orderItem.getIsReviewed() == 0) {
             orderItem.setIsReviewed(1);
             orderItemDAO.update(orderItem);
-        } else {//否则改变订单的状态
+        }
+
+        List<OrderItem> oi_reviewed_list = orderItemDAO.getReviewedList(oid);//订单里
+        if(oi_reviewed_list.size() >= oi_list.size()) {//若订单中已评论的产品数小于总数，则不改变状态
             order.setStatus(OrderDAO.finish);
             orderDAO.update(order);
         }
@@ -464,6 +466,6 @@ public class ForeServlet extends BaseForeServlet {
         review.setCreateDate(new Date());
         reviewDAO.add(review);
 
-        return "@forereview?pid=" + pid + "&oid=" + oid + "&showonly=true" + "&oiid=" + oiid;
+        return "@foreproduct?pid=" + pid;
     }
 }
