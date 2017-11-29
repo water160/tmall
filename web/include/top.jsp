@@ -19,14 +19,10 @@
   </c:if>
 
   <span class="pull-right">
-    <a href="/forebought">我的订单</a>
+    <a href="/forebought">我的订单<strong>(${orderTotalNumber})</strong></a>
+
     <a href="/forecart"><span style="color:#C40000;margin:0px" class=" glyphicon glyphicon-shopping-cart redColor"></span>
-    <c:if test="${empty cartTotalItemNumber}">
-      购物车<strong>0</strong>件</a>
-    </c:if>
-    <c:if test="${!empty cartTotalItemNumber}">
-      购物车<strong>${cartTotalItemNumber}</strong>件</a>
-    </c:if>
+      购物车<strong>(${cartTotalItemNumber})</strong></a>
   </span>
 
 </nav>
