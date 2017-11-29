@@ -410,4 +410,60 @@ public class ForeServlet extends BaseForeServlet {
         orderDAO.update(order);
         return "%success";
     }
+
+    /**
+     * 订单评价功能，跳转至某产品评价页面
+     */
+    public String review(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int oiid = Integer.parseInt(request.getParameter("oiid"));
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        int oid = Integer.parseInt(request.getParameter("oid"));
+        Product product = productDAO.getProductById(pid);
+        Order order = orderDAO.getOrderById(oid);
+        OrderItem orderItem = orderItemDAO.getOrderItemById(oiid);
+
+        List<Review> reviews = reviewDAO.list(product.getId());
+        productDAO.setSaleAndReviewNumber(product);
+        request.setAttribute("orderItem", orderItem);
+        request.setAttribute("product", product);
+        request.setAttribute("order", order);
+        request.setAttribute("reviews", reviews);
+
+        return "/front/review.jsp";
+    }
+
+    public String doreview(HttpServletRequest request, HttpServletResponse response, Page page) {
+        User user = (User) request.getSession().getAttribute("user");
+        if(user == null) {
+            return "/front/login.jsp";
+        }
+        int oid = Integer.parseInt(request.getParameter("oid"));
+        int oiid = Integer.parseInt(request.getParameter("oiid"));
+        Order order = orderDAO.getOrderById(oid);
+
+        List<OrderItem> oi_list = orderItemDAO.listByOrder(oid);
+        List<OrderItem> oi_reviewed_list = orderItemDAO.getReviewedList(oid);//订单里
+        if(oi_reviewed_list.size() < oi_list.size()) {//若订单中已评论的产品数小于总数，则不改变状态
+            OrderItem orderItem = orderItemDAO.getOrderItemById(oiid);
+            orderItem.setIsReviewed(1);
+            orderItemDAO.update(orderItem);
+        } else {//否则改变订单的状态
+            order.setStatus(OrderDAO.finish);
+            orderDAO.update(order);
+        }
+
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        Product product = productDAO.getProductById(pid);
+        String content = request.getParameter("content");
+        content = HtmlUtils.htmlEscape(content);
+
+        Review review = new Review();
+        review.setContent(content);
+        review.setUser(user);
+        review.setProduct(product);
+        review.setCreateDate(new Date());
+        reviewDAO.add(review);
+
+        return "@forereview?pid=" + pid + "&oid=" + oid + "&showonly=true" + "&oiid=" + oiid;
+    }
 }
