@@ -1761,10 +1761,11 @@ button.orderListItemConfirm:hover {
 }
 
 button.orderListItemReview {
+    margin-left: 200px;
+    outline: 0 none;
     border: 1px solid #DCDCDC;
-    background-color: #fff;
-    border-radius: 2px;
-    color: #3C3C3C;
+    background-color: #ffffff;
+    color: #131313;
     font-size: 12px;
     font-weight: bold;
     padding: 6px 12px;
@@ -2033,17 +2034,17 @@ span.reviewProductInfoRightBelowText {
     color: #666666;
 }
 
-div.reviewStasticsLeft {
+div.reviewStatisticsLeft {
     width: 180px;
     float: left;
 }
 
-div.reviewStasticsLeftTop {
+div.reviewStatisticsLeftTop {
     background-color: #C40000;
     height: 6px;
 }
 
-div.reviewStasticsLeftContent {
+div.reviewStatisticsLeftContent {
     line-height: 29px;
     border-left: 1px solid #D5D4D4;
     border-right: 1px solid #D5D4D4;
@@ -2054,26 +2055,26 @@ div.reviewStasticsLeftContent {
     font-weight: bold;
 }
 
-span.reviewStasticsNumber {
+span.reviewStatisticsNumber {
     color: #284CA5;
 }
 
-div.reviewStasticsLeftFoot {
+div.reviewStatisticsLeftFoot {
     height: 6px;
     border-left: 1px solid #D5D4D4;
     border-bottom: 1px solid #D5D4D4;
     background-color: #F6F5F1;
 }
 
-div.reviewStasticsRight {
+div.reviewStatisticsRight {
     overflow: hidden;
 }
 
-div.reviewStasticsRightEmpty {
+div.reviewStatisticsRightEmpty {
     height: 35px;
 }
 
-div.reviewStasticsFoot {
+div.reviewStatisticsFoot {
     background-color: #F6F5F1;
     border: 1px solid #D5D4D4;
     border-left-width: 0px;
@@ -2083,12 +2084,12 @@ div.reviewStasticsFoot {
 div.makeReviewDiv {
     border: 1px solid #D1CCC8;
     margin: 20px 0px;
-    background-color: #EFEFEF;
+    background-color: #f3f3f3;
 }
 
 div.makeReviewText {
     font-size: 16px;
-    color: #333333;
+    color: #585858;
     font-weight: bold;
     margin: 20px 40px;
 }
@@ -2100,18 +2101,26 @@ table.makeReviewTable {
 table.makeReviewTable td {
     border: 1px solid #E7E7E7;
     padding: 10px;
-    background-color: white;
+    background-color: #ffffff;
+}
+table.makeReviewTable th {
+    text-align: center;
+    border: 1px solid #c4c4c4;
+    padding: 10px;
+    background-color: #dedede;
 }
 
 table.makeReviewTable textarea {
-    border-width: 0px;
+    border: 1px solid #E7E7E7;
+    outline: 0 none;
     resize: none;
     width: 420px;
     height: 120px;
 }
 
 td.makeReviewTableFirstTD {
-    background-color: #F6F6F6;
+    border: 1px solid #00b4ef;
+    background-color: #cecece;
 }
 
 div.makeReviewButtonDiv {
@@ -2243,7 +2252,7 @@ div.categoryPictureInProductPageDiv {
     text-align: center;
 }
 
-div.reviewStasticsDiv {
+div.reviewStatisticsDiv {
     margin-top: 20px;
 }
 

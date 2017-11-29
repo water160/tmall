@@ -149,6 +149,16 @@
                   <img src="../../img/site/creditcard.png" title="支持信用卡支付">
                   <img src="../../img/site/7day.png" title="消费者保障服务,承诺7天退货">
                   <img src="../../img/site/promise.png" title="消费者保障服务,承诺如实描述">
+                  <c:if test="${o.status=='waitReview' and oi.isReviewed == 0}">
+                    <span><a href="/forereview?pid=${oi.product.id}&oid=${o.id}&oiid=${oi.id}">
+                      <button class="orderListItemReview">评价</button></a></span>
+                  </c:if>
+                  <c:if test="${o.status=='waitReview' and oi.isReviewed == 1}">
+                    <p>已评价</p>
+                  </c:if>
+                  <c:if test="${o.status=='finish'}">
+                    <p>该产品已评价</p>
+                  </c:if>
                 </div>
               </div>
             </td>
@@ -195,9 +205,10 @@
                   <%--<button class="btn btn-info btn-sm ask2delivery" link="admin_order_delivery?id=${o.id}">催卖家发货</button>--%>
                 </c:if>
                 <c:if test="${o.status=='waitReview'}">
-                  <a href="/forereview?oid=${o.id}">
-                    <button class="orderListItemReview">评价</button>
-                  </a>
+                  <p>产品待评价</p>
+                </c:if>
+                <c:if test="${o.status=='finish'}">
+                  <p>产品都已评价</p>
                 </c:if>
               </td>
             </c:if>

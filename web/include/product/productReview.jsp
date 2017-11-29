@@ -19,7 +19,7 @@
         </div>
 
         <div class="productReviewItemUserInfo">
-            ${r.user.getAnonymousName}<span class="userInfoGrayPart">（匿名）</span>
+            ${r.user.getAnonymousName()}<span class="userInfoGrayPart">（匿名）</span>
         </div>
 
         <div style="clear:both"></div>
