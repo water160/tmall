@@ -30,7 +30,7 @@ public class OrderItemDAO {
     }
 
     public void add(OrderItem bean) {
-        String sql = "insert into orderitem values(null, ?, ?, ?, ?)";
+        String sql = "insert into orderitem values(null, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -44,6 +44,7 @@ public class OrderItemDAO {
             }
             pstmt.setInt(3, bean.getUser().getId());
             pstmt.setInt(4, bean.getNumber());
+            pstmt.setInt(5, bean.getIsReviewed());
             pstmt.execute();
             conn.commit();
             conn.setAutoCommit(true);
@@ -60,7 +61,7 @@ public class OrderItemDAO {
 
     public void update(OrderItem bean) {
 
-        String sql = "update orderitem set pid= ?, oid=?, uid=?,number=?  where id = ?";
+        String sql = "update orderitem set pid=?, oid=?, uid=?, number=?, isReviewed=? where id=?";
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             conn.setAutoCommit(false);
@@ -72,7 +73,8 @@ public class OrderItemDAO {
             }
             pstmt.setInt(3, bean.getUser().getId());
             pstmt.setInt(4, bean.getNumber());
-            pstmt.setInt(5, bean.getId());
+            pstmt.setInt(5, bean.getIsReviewed());
+            pstmt.setInt(6, bean.getId());
             pstmt.execute();
             conn.commit();
             conn.setAutoCommit(true);
@@ -110,6 +112,7 @@ public class OrderItemDAO {
                 int oid = rs.getInt("oid");
                 int uid = rs.getInt("uid");
                 int number = rs.getInt("number");
+                int isReviewed = rs.getInt("isReviewed");
                 Product product = new ProductDAO().getProductById(pid);
                 User user = new UserDAO().getUserById(uid);
 
@@ -122,6 +125,7 @@ public class OrderItemDAO {
                 }
                 bean.setUser(user);
                 bean.setNumber(number);
+                bean.setIsReviewed(isReviewed);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -135,7 +139,7 @@ public class OrderItemDAO {
 
     public List<OrderItem> listByUser(int uid, int start, int count) {
         List<OrderItem> beans = new ArrayList<OrderItem>();
-        String sql = "select * from orderitem where uid = ? and oid=-1 order by id desc limit ?,? ";
+        String sql = "select * from orderitem where uid = ? and oid=-1 order by id desc limit ?,?";
 
         try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -151,7 +155,7 @@ public class OrderItemDAO {
                 int pid = rs.getInt("pid");
                 int oid = rs.getInt("oid");
                 int number = rs.getInt("number");
-
+                int isReviewed = rs.getInt("isReviewed");
                 Product product = new ProductDAO().getProductById(pid);
                 if (-1 != oid) {
                     Order order = new OrderDAO().getOrderById(oid);
@@ -162,6 +166,7 @@ public class OrderItemDAO {
                 bean.setProduct(product);
                 bean.setUser(user);
                 bean.setNumber(number);
+                bean.setIsReviewed(isReviewed);
                 bean.setId(id);
                 beans.add(bean);
             }
@@ -193,7 +198,7 @@ public class OrderItemDAO {
                 int pid = rs.getInt("pid");
                 int uid = rs.getInt("uid");
                 int number = rs.getInt("number");
-
+                int isReviewed = rs.getInt("isReviewed");
                 Product product = new ProductDAO().getProductById(pid);
                 if (-1 != oid) {
                     Order order = new OrderDAO().getOrderById(oid);
@@ -205,6 +210,7 @@ public class OrderItemDAO {
 
                 bean.setUser(user);
                 bean.setNumber(number);
+                bean.setIsReviewed(isReviewed);
                 bean.setId(id);
                 beans.add(bean);
             }
@@ -247,7 +253,7 @@ public class OrderItemDAO {
     public List<OrderItem> listByProduct(int pid, int start, int count) {
         List<OrderItem> beans = new ArrayList<OrderItem>();
 
-        String sql = "select * from orderitem where pid = ? order by id desc limit ?,? ";
+        String sql = "select * from orderitem where pid = ? order by id desc limit ?,?";
 
         try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -264,7 +270,7 @@ public class OrderItemDAO {
                 int uid = rs.getInt("uid");
                 int oid = rs.getInt("oid");
                 int number = rs.getInt("number");
-
+                int isReviewed = rs.getInt("isReviewed");
                 Product product = new ProductDAO().getProductById(pid);
                 if (-1 != oid) {
                     Order order = new OrderDAO().getOrderById(oid);
@@ -276,6 +282,7 @@ public class OrderItemDAO {
 
                 bean.setUser(user);
                 bean.setNumber(number);
+                bean.setIsReviewed(isReviewed);
                 bean.setId(id);
                 beans.add(bean);
             }
@@ -300,5 +307,44 @@ public class OrderItemDAO {
             e.printStackTrace();
         }
         return total;
+    }
+
+    /**
+     * 根据订单号查询该订单内的已经评论过的OrderItem产品项
+     */
+    public List<OrderItem> getReviewedList(int oid) {
+        List<OrderItem> beans = new ArrayList<OrderItem>();
+
+        String sql = "select * from orderitem where oid=? and isReviewed=1 order by id desc";
+        try(Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, oid);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                OrderItem bean = new OrderItem();
+                int id = rs.getInt(1);
+                int uid = rs.getInt("uid");
+                int pid = rs.getInt("pid");
+                int number = rs.getInt("number");
+                int isReviewed = rs.getInt("isReviewed");
+                Product product = new ProductDAO().getProductById(pid);
+                if (-1 != oid) {
+                    Order order = new OrderDAO().getOrderById(oid);
+                    bean.setOrder(order);
+                }
+
+                User user = new UserDAO().getUserById(uid);
+                bean.setProduct(product);
+
+                bean.setUser(user);
+                bean.setNumber(number);
+                bean.setIsReviewed(isReviewed);
+                bean.setId(id);
+                beans.add(bean);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return beans;
     }
 }
