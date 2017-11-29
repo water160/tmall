@@ -396,4 +396,15 @@ public class ForeServlet extends BaseForeServlet {
 
         return "/front/orderConfirmed.jsp";
     }
+
+    /**
+     * 订单显示页面下，删除某个订单（实际只是改变状态，未真正删除）
+     */
+    public String deleteOrder(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int oid = Integer.parseInt(request.getParameter("oid"));
+        Order order = orderDAO.getOrderById(oid);
+        order.setStatus(OrderDAO.delete);
+        orderDAO.update(order);
+        return "%success";
+    }
 }
