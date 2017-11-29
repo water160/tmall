@@ -2,9 +2,11 @@ package tmall.filter;
 
 import org.apache.commons.lang.StringUtils;
 import tmall.bean.Category;
+import tmall.bean.Order;
 import tmall.bean.OrderItem;
 import tmall.bean.User;
 import tmall.dao.CategoryDAO;
+import tmall.dao.OrderDAO;
 import tmall.dao.OrderItemDAO;
 
 import javax.servlet.*;
@@ -29,12 +31,17 @@ public class ForeServletFilter implements Filter {
 
         User user = (User) request.getSession().getAttribute("user");
         int cartTotalItemNumber = 0;//购物车中商品数量
+        int orderTotalNumber = 0;//订单数量
         if(user != null) {
             List<OrderItem> oi_list = new OrderItemDAO().listByUser(user.getId());
             for(OrderItem oi : oi_list) {
                 cartTotalItemNumber += oi.getNumber();
             }
+            List<Order> o_list = new OrderDAO().list(user.getId(), OrderDAO.delete);
+            orderTotalNumber = o_list.size();
         }
+        request.setAttribute("orderTotalNumber", orderTotalNumber);
+        request.setAttribute("cartTotalItemNumber", cartTotalItemNumber);
 
         List<Category> c_list = (List<Category>) request.getAttribute("c_list");
         if(c_list == null) {
