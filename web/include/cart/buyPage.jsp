@@ -60,42 +60,44 @@
         </tr>
         </thead>
         <tbody class="productListTableTbody">
-          <tr class="orderItemTR">
-            <td class="orderItemFirstTD">
-              <c:if test="${empty product.firstProductImage}">
-                <img class="orderItemImg" src="../../img/site/imgNotFound.jpg">
-              </c:if>
-              <c:if test="${!empty product.firstProductImage}">
-                <img class="orderItemImg" src="../../img/productSingle_middle/${product.firstProductImage.id}.jpg">
-              </c:if>
-            </td>
-            <td class="orderItemProductInfo">
-              <a href="foreproduct?pid=${oi.product.id}" class="orderItemProductLink">${product.name}</a>
-              <img src="../../img/site/creditcard.png" title="支持信用卡支付">
-              <img src="../../img/site/7day.png" title="消费者保障服务,承诺7天退货">
-              <img src="../../img/site/promise.png" title="消费者保障服务,承诺如实描述">
-            </td>
-            <td>
-              <span class="orderItemProductPrice">￥<fmt:formatNumber type="number" value="${product.promotePrice}" minFractionDigits="2"/></span>
-            </td>
-            <td>
+        <tr class="orderItemTR">
+          <td class="orderItemFirstTD">
+            <c:if test="${empty product.firstProductImage}">
+              <img class="orderItemImg" src="../../img/site/imgNotFound.jpg">
+            </c:if>
+            <c:if test="${!empty product.firstProductImage}">
+              <img class="orderItemImg" src="../../img/productSingle_middle/${product.firstProductImage.id}.jpg">
+            </c:if>
+          </td>
+          <td class="orderItemProductInfo">
+            <a href="foreproduct?pid=${oi.product.id}" class="orderItemProductLink">${product.name}</a>
+            <img src="../../img/site/creditcard.png" title="支持信用卡支付">
+            <img src="../../img/site/7day.png" title="消费者保障服务,承诺7天退货">
+            <img src="../../img/site/promise.png" title="消费者保障服务,承诺如实描述">
+          </td>
+          <td>
+            <span class="orderItemProductPrice">￥<fmt:formatNumber type="number" value="${product.promotePrice}"
+                                                                   minFractionDigits="2"/></span>
+          </td>
+          <td>
               <span class="orderItemProductNumber">
                 <span class="productNumberSettingSpan">${number}</span>
               </span>
-            </td>
-            <td>
-              <span class="orderItemUnitSum">￥<fmt:formatNumber type="number" value="${number * product.promotePrice}" minFractionDigits="2"/></span></td>
+          </td>
+          <td>
+            <span class="orderItemUnitSum">￥<fmt:formatNumber type="number" value="${number * product.promotePrice}"
+                                                              minFractionDigits="2"/></span></td>
 
-              <td rowspan="5" class="orderItemLastTD">
-                <label class="orderItemDeliveryLabel">
-                  <input type="radio" value="" checked="checked">普通配送
-                </label>
+          <td rowspan="5" class="orderItemLastTD">
+            <label class="orderItemDeliveryLabel">
+              <input type="radio" value="" checked="checked">普通配送
+            </label>
 
-                <select class="orderItemDeliverySelect" class="form-control">
-                  <option>快递 免邮费</option>
-                </select>
-              </td>
-          </tr>
+            <select class="orderItemDeliverySelect" class="form-control">
+              <option>快递 免邮费</option>
+            </select>
+          </td>
+        </tr>
         </tbody>
 
       </table>
@@ -111,7 +113,8 @@
           </span>
         </div>
 
-        <span class="pull-right">店铺合计(含运费): ￥<fmt:formatNumber type="number" value="${totalPrice}" minFractionDigits="2"/></span>
+        <span class="pull-right">店铺合计(含运费): ￥<fmt:formatNumber type="number" value="${totalPrice}"
+                                                               minFractionDigits="2"/></span>
       </div>
 
     </div>
@@ -119,7 +122,8 @@
     <div class="orderItemTotalSumDiv">
       <div class="pull-right">
         <span>实付款：</span>
-        <span class="orderItemTotalSumSpan">￥<fmt:formatNumber type="number" value="${totalPrice}" minFractionDigits="2"/></span>
+        <span class="orderItemTotalSumSpan">￥<fmt:formatNumber type="number" value="${totalPrice}"
+                                                               minFractionDigits="2"/></span>
       </div>
     </div>
 

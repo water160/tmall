@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
 <script>
-  $(function(){//随机数控制
-    $("div.productsAsideCategorys div.row a").each(function(){
-      var v = Math.round(Math.random() *6);
-      if(v == 1)
-        $(this).css("color","#87CEFA");
+  $(function () {//随机数控制
+    $("div.productsAsideCategorys div.row a").each(function () {
+      var v = Math.round(Math.random() * 6);
+      if (v == 1)
+        $(this).css("color", "#87CEFA");
     });
   });
 </script>

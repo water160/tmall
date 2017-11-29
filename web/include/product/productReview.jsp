@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
-<div class="productReviewDiv" >
+<div class="productReviewDiv">
   <div class="productReviewTopPart">
-    <a  href="#nowhere" class="productReviewTopPartSelectedLink">商品详情</a>
-    <a  href="#nowhere" class="selected">累计评价 <span class="productReviewTopReviewLinkNumber">${product.reviewCount}</span> </a>
+    <a href="#nowhere" class="productReviewTopPartSelectedLink">商品详情</a>
+    <a href="#nowhere" class="selected">累计评价 <span
+            class="productReviewTopReviewLinkNumber">${product.reviewCount}</span> </a>
   </div>
 
   <div class="productReviewContentPart">
@@ -18,7 +19,7 @@
         </div>
 
         <div class="productReviewItemUserInfo">
-          ${r.user.getAnonymousName}<span class="userInfoGrayPart">（匿名）</span>
+            ${r.user.getAnonymousName}<span class="userInfoGrayPart">（匿名）</span>
         </div>
 
         <div style="clear:both"></div>

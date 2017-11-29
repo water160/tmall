@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
 <div class="homepageCategoryProducts">
   <c:forEach items="${c_list}" var="c">
@@ -9,9 +9,10 @@
       <br>
       <c:forEach items="${c.productList}" var="p" varStatus="st">
         <c:if test="${st.count<=5}">
-          <div class="productItem" >
+          <div class="productItem">
             <c:if test="${!empty p.firstProductImage.id}">
-              <a href="/foreproduct?pid=${p.id}"><img width="100px" src="../../img/productSingle_middle/${p.firstProductImage.id}.jpg"></a>
+              <a href="/foreproduct?pid=${p.id}"><img width="100px"
+                                                      src="../../img/productSingle_middle/${p.firstProductImage.id}.jpg"></a>
             </c:if>
             <c:if test="${empty p.firstProductImage.id}">
               <a href="/foreproduct?pid=${p.id}"><img width="100px" src="../../img/site/imgNotFound.jpg"></a>

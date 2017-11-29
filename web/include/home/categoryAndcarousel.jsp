@@ -1,55 +1,55 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <script>
-  function showProductsAsideCategorys(cid){
-    $("div.eachCategory[cid="+cid+"]").css("background-color","#bec2c6");
-    $("div.eachCategory[cid="+cid+"] a").css("color","#c81623");
-    $("div.productsAsideCategorys[cid="+cid+"]").show();
+  function showProductsAsideCategorys(cid) {
+    $("div.eachCategory[cid=" + cid + "]").css("background-color", "#bec2c6");
+    $("div.eachCategory[cid=" + cid + "] a").css("color", "#c81623");
+    $("div.productsAsideCategorys[cid=" + cid + "]").show();
   }
 
-  function hideProductsAsideCategorys(cid){
-    $("div.eachCategory[cid="+cid+"]").css("background-color","#e2e2e3");
-    $("div.eachCategory[cid="+cid+"] a").css("color","#000");
-    $("div.productsAsideCategorys[cid="+cid+"]").hide();
+  function hideProductsAsideCategorys(cid) {
+    $("div.eachCategory[cid=" + cid + "]").css("background-color", "#e2e2e3");
+    $("div.eachCategory[cid=" + cid + "] a").css("color", "#000");
+    $("div.productsAsideCategorys[cid=" + cid + "]").hide();
   }
 
-  $(function(){
-    $("div.eachCategory").mouseenter(function(){
+  $(function () {
+    $("div.eachCategory").mouseenter(function () {
       var cid = $(this).attr("cid");
       showProductsAsideCategorys(cid);
     });
-    $("div.eachCategory").mouseleave(function(){
+    $("div.eachCategory").mouseleave(function () {
       var cid = $(this).attr("cid");
       hideProductsAsideCategorys(cid);
     });
-    $("div.productsAsideCategorys").mouseenter(function(){
+    $("div.productsAsideCategorys").mouseenter(function () {
       var cid = $(this).attr("cid");
       showProductsAsideCategorys(cid);
     });
-    $("div.productsAsideCategorys").mouseleave(function(){
+    $("div.productsAsideCategorys").mouseleave(function () {
       var cid = $(this).attr("cid");
       hideProductsAsideCategorys(cid);
     });
 
     //红色猫耳朵图片定位显示
-    $("div.rightMenu span").mouseenter(function(){
+    $("div.rightMenu span").mouseenter(function () {
       var left = $(this).position().left;
       var top = $(this).position().top;
       var width = $(this).css("width");
-      var destLeft = parseInt(left) + parseInt(width)/2;
-      $("img#catear").css("left",destLeft);
-      $("img#catear").css("top",top-20);
+      var destLeft = parseInt(left) + parseInt(width) / 2;
+      $("img#catear").css("left", destLeft);
+      $("img#catear").css("top", top - 20);
       $("img#catear").fadeIn(300);
 
     });
-    $("div.rightMenu span").mouseleave(function(){
+    $("div.rightMenu span").mouseleave(function () {
       $("img#catear").hide();
     });
 
     //竖状分类菜单定位
     var left = $("div#carousel-of-product").offset().left;
-    $("div.categoryMenu").css("left",left-100);
-    $("div.categoryWithCarousel div.head").css("margin-left",left-100);
-    $("div.productsAsideCategorys").css("left",left-20);
+    $("div.categoryMenu").css("left", left - 100);
+    $("div.categoryWithCarousel div.head").css("margin-left", left - 100);
+    $("div.productsAsideCategorys").css("left", left - 20);
   });
 </script>
 
@@ -60,7 +60,7 @@
   <div class="headbar">
     <div class="head">
       <span style="margin-left:10px" class="glyphicon glyphicon-th-list"></span>
-      <span style="margin-left:10px" >商品分类</span>
+      <span style="margin-left:10px">商品分类</span>
     </div>
 
     <div class="rightMenu">

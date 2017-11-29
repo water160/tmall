@@ -7,13 +7,13 @@
   $(function () {
     $("button.orderPageCheckOrderItems").click(function () {
       var oid = $(this).attr("oid");
-      $("tr.orderPageOrderItemTR[oid="+oid+"]").toggle();
+      $("tr.orderPageOrderItemTR[oid=" + oid + "]").toggle();
     });
   });
   $(function () {
     $("button.delivery").click(function () {
       var confirmDelivery = confirm("确认发货?");
-      if(confirmDelivery)
+      if (confirmDelivery)
         return true;
       return false;
     });
@@ -55,7 +55,8 @@
         <td><fmt:formatDate value="${o.confirmDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 
         <td>
-          <button oid=${o.id} class="orderPageCheckOrderItems btn btn-primary btn-xs">查看详情</button>
+          <button oid=${o.id} class="orderPageCheckOrderItems btn btn-primary btn-xs
+          ">查看详情</button>
 
           <c:if test="${o.status=='waitDelivery'}">
             <a href="admin_order_delivery?id=${o.id}">
@@ -71,7 +72,9 @@
             <c:forEach items="${o.orderItemList}" var="oi">
               <tr>
                 <td width="8%">
-                  <a href="img/productSingle/${oi.product.firstProductImage.id}.jpg" target="_blank"><img width="40px" height="40px" src="img/productSingle/${oi.product.firstProductImage.id}.jpg"></a>
+                  <a href="img/productSingle/${oi.product.firstProductImage.id}.jpg" target="_blank"><img width="40px"
+                                                                                                          height="40px"
+                                                                                                          src="img/productSingle/${oi.product.firstProductImage.id}.jpg"></a>
                 </td>
 
                 <td width="42%">
@@ -85,7 +88,9 @@
                   <span class="text-muted">单价：￥${oi.product.promotePrice}</span>
                 </td>
                 <td>
-                  <span class="text-muted">共：￥<fmt:formatNumber type="number" value="${oi.product.promotePrice * oi.number}" minFractionDigits="2"/></span>
+                  <span class="text-muted">共：￥<fmt:formatNumber type="number"
+                                                                value="${oi.product.promotePrice * oi.number}"
+                                                                minFractionDigits="2"/></span>
                 </td>
               </tr>
             </c:forEach>

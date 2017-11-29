@@ -8,8 +8,8 @@ import tmall.util.DateUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 public class ProductDAO {
 
@@ -247,10 +247,11 @@ public class ProductDAO {
 
     /**
      * 为一些分类填充产品集合
+     *
      * @param c_list
      */
     public void fill(List<Category> c_list) {
-        for(Category c : c_list) {
+        for (Category c : c_list) {
             fill(c);
         }
     }

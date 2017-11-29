@@ -72,18 +72,18 @@
 <%
   List<Order> o_list = (List<Order>) request.getAttribute("o_list");
   int waitPayNum = 0, waitDeliveryNum = 0, waitConfirm = 0, waitReview = 0;
-  for(Order order : o_list) {
-      if(order.getStatus().equals("waitPay")) {
-        waitPayNum++;
-      } else if(order.getStatus().equals("waitDelivery")) {
-        waitDeliveryNum++;
-      } else if(order.getStatus().equals("waitConfirm")) {
-        waitConfirm++;
-      } else if(order.getStatus().equals("waitReview")) {
-        waitReview++;
-      } else {
-        System.out.println(order.getStatus() + " no status fit!");
-      }
+  for (Order order : o_list) {
+    if (order.getStatus().equals("waitPay")) {
+      waitPayNum++;
+    } else if (order.getStatus().equals("waitDelivery")) {
+      waitDeliveryNum++;
+    } else if (order.getStatus().equals("waitConfirm")) {
+      waitConfirm++;
+    } else if (order.getStatus().equals("waitReview")) {
+      waitReview++;
+    } else {
+      System.out.println(order.getStatus() + " no status fit!");
+    }
   }
 %>
 <div class="boughtDiv">
@@ -121,7 +121,9 @@
 
           <td colspan="2"><img width="13px" src="../../img/site/orderItemTmall.png">天猫商场</td>
 
-          <td colspan="1"><a class="wangwanglink" href="#nowhere"><div class="orderItemWangWangGif"></div></a></td>
+          <td colspan="1"><a class="wangwanglink" href="#nowhere">
+            <div class="orderItemWangWangGif"></div>
+          </a></td>
 
           <td class="orderItemDeleteTD">
             <a class="deleteOrderLink" oid="${o.id}" href="#nowhere">
@@ -152,9 +154,14 @@
             </td>
 
             <td class="orderItemProductInfoPartTD" width="145px">
-              <p>原价:<span class="orderListItemProductOriginalPrice">￥<fmt:formatNumber type="number" value="${oi.product.originalPrice}" minFractionDigits="2"/></span></p>
-              <p>折扣价:<span class="orderListItemProductPrice">￥<fmt:formatNumber type="number" value="${oi.product.promotePrice}" minFractionDigits="2"/></span></p>
-              <p>数量:  <span class="orderListItemProductPrice">${oi.number}</span></p>
+              <p>原价:<span class="orderListItemProductOriginalPrice">￥<fmt:formatNumber type="number"
+                                                                                       value="${oi.product.originalPrice}"
+                                                                                       minFractionDigits="2"/></span>
+              </p>
+              <p>折扣价:<span class="orderListItemProductPrice">￥<fmt:formatNumber type="number"
+                                                                                value="${oi.product.promotePrice}"
+                                                                                minFractionDigits="2"/></span></p>
+              <p>数量: <span class="orderListItemProductPrice">${oi.number}</span></p>
             </td>
 
             <c:if test="${st.count==1}">
@@ -163,13 +170,16 @@
                 <span class="orderListItemNumber">${o.totalNumber}</span>
               </td>
 
-              <td valign="top" rowspan="${fn:length(o.orderItemList)}" width="120px" class="orderListItemProductRealPriceTD orderItemOrderInfoPartTD">
+              <td valign="top" rowspan="${fn:length(o.orderItemList)}" width="120px"
+                  class="orderListItemProductRealPriceTD orderItemOrderInfoPartTD">
                 <div class="orderListItemProductRealPrice">
-                  ￥<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" type="number" value="${o.total}"/></div>
+                  ￥<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" type="number"
+                                     value="${o.total}"/></div>
                 <div class="orderListItemPriceWithTransport">(含运费：￥0.00)</div>
               </td>
 
-              <td valign="top" rowspan="${fn:length(o.orderItemList)}" class="orderListItemButtonTD orderItemOrderInfoPartTD" width="100px">
+              <td valign="top" rowspan="${fn:length(o.orderItemList)}"
+                  class="orderListItemButtonTD orderItemOrderInfoPartTD" width="100px">
                 <c:if test="${o.status=='waitConfirm'}">
                   <a href="/foreconfirmPay?oid=${o.id}">
                     <button class="orderListItemConfirm">确认收货</button>

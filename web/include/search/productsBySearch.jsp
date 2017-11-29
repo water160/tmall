@@ -1,17 +1,19 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
 <div class="searchProducts">
 
   <c:forEach items="${p_list}" var="p">
     <div class="productUnit" price="${p.promotePrice}">
       <c:if test="${!empty p.firstProductImage}">
-        <a href="foreproduct?pid=${p.id}"><img class="productImage" src="../../img/productSingle/${p.firstProductImage.id}.jpg"></a>
+        <a href="foreproduct?pid=${p.id}"><img class="productImage"
+                                               src="../../img/productSingle/${p.firstProductImage.id}.jpg"></a>
       </c:if>
       <c:if test="${empty p.firstProductImage}">
         <a href="foreproduct?pid=${p.id}"><img class="productImage" src="../../img/site/imgNotFound.jpg"></a>
       </c:if>
 
-      <span class="productPrice">¥<fmt:formatNumber type="number" value="${p.promotePrice}" minFractionDigits="2"/></span>
+      <span class="productPrice">¥<fmt:formatNumber type="number" value="${p.promotePrice}"
+                                                    minFractionDigits="2"/></span>
 
       <a class="productLink" href="foreproduct?pid=${p.id}">${fn:substring(p.name, 0, 50)}</a>
 

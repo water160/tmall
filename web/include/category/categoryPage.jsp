@@ -8,7 +8,7 @@
 <div id="category">
   <div class="categoryPageDiv">
     <img src="img/category/${category.id}.jpg">
-    <%@include file="sortBar.jsp"%>
-    <%@include file="productsByCategory.jsp"%>
+    <%@include file="sortBar.jsp" %>
+    <%@include file="productsByCategory.jsp" %>
   </div>
 </div>

@@ -16,10 +16,10 @@ public class UserDAO {
      */
     public int getTotal() {
         int total = 0;
-        try(Connection conn = DBUtil.getConnection(); Statement stmt = conn.createStatement();) {
+        try (Connection conn = DBUtil.getConnection(); Statement stmt = conn.createStatement();) {
             String sql = "select count(*) from user";
             ResultSet rs = stmt.executeQuery(sql);
-            while(rs.next()) {
+            while (rs.next()) {
                 total = rs.getInt(1);
             }
         } catch (SQLException e) {

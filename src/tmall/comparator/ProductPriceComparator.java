@@ -1,8 +1,8 @@
 package tmall.comparator;
 
-import java.util.Comparator;
-
 import tmall.bean.Product;
+
+import java.util.Comparator;
 
 public class ProductPriceComparator implements Comparator<Product> {
 

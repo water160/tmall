@@ -32,9 +32,9 @@ public class ForeServletFilter implements Filter {
         User user = (User) request.getSession().getAttribute("user");
         int cartTotalItemNumber = 0;//购物车中商品数量
         int orderTotalNumber = 0;//订单数量
-        if(user != null) {
+        if (user != null) {
             List<OrderItem> oi_list = new OrderItemDAO().listByUser(user.getId());
-            for(OrderItem oi : oi_list) {
+            for (OrderItem oi : oi_list) {
                 cartTotalItemNumber += oi.getNumber();
             }
             List<Order> o_list = new OrderDAO().list(user.getId(), OrderDAO.delete);
@@ -44,7 +44,7 @@ public class ForeServletFilter implements Filter {
         request.setAttribute("cartTotalItemNumber", cartTotalItemNumber);
 
         List<Category> c_list = (List<Category>) request.getAttribute("c_list");
-        if(c_list == null) {
+        if (c_list == null) {
             c_list = new CategoryDAO().list();
             request.setAttribute("c_list", c_list);
         }
@@ -60,7 +60,7 @@ public class ForeServletFilter implements Filter {
         String uri = request.getRequestURI();
         uri = StringUtils.remove(uri, contextPath);
 
-        if(uri.startsWith("/fore") && !uri.startsWith("/foreServlet")) {//这里不用按照BaseServletFilter一样需要找到相应的类似categoryServlet进行跳转
+        if (uri.startsWith("/fore") && !uri.startsWith("/foreServlet")) {//这里不用按照BaseServletFilter一样需要找到相应的类似categoryServlet进行跳转
             String method = StringUtils.substringAfterLast(uri, "/fore");
             request.setAttribute("method", method);
             req.getRequestDispatcher("/foreServlet").forward(request, response);

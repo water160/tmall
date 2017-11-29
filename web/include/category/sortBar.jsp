@@ -18,10 +18,10 @@
 
       var begin = $("input.beginPrice").val();
       var end = $("input.endPrice").val();
-      if(begin == null) {
+      if (begin == null) {
         begin = 0;
       }
-      if(end == null) {
+      if (end == null) {
         end = Number.MAX_VALUE;
       }
       if (!isNaN(begin) && !isNaN(end)) {
@@ -42,10 +42,12 @@
 
   <table class="categorySortBarTable categorySortTable">
     <tr>
-      <td <c:if test="${param.sort=='all'||empty param.sort}">class="grayColumn"</c:if> >
+      <td
+              <c:if test="${param.sort=='all'||empty param.sort}">class="grayColumn"</c:if> >
         <a href="?cid=${category.id}&sort=all">综合<span class="glyphicon glyphicon-arrow-down"></span></a>
       </td>
-      <td <c:if test="${param.sort=='review'}">class="grayColumn"</c:if> >
+      <td
+              <c:if test="${param.sort=='review'}">class="grayColumn"</c:if> >
         <a href="?cid=${category.id}&sort=review">人气<span class="glyphicon glyphicon-arrow-down"></span></a>
       </td>
       <td <c:if test="${param.sort=='date'}">class="grayColumn"</c:if>>

@@ -28,6 +28,7 @@
             num.substring(num.length - (4 * i + 3));
       return (((sign) ? '' : '-') + num + '.' + cents);
     }
+
     function checkEmpty(id, name) {
       var value = $("#" + id).val();
       if (value.length == 0) {

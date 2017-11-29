@@ -243,7 +243,8 @@
       <c:forEach items="${oi_list}" var="oi">
         <tr oiid="${oi.id}" class="cartProductItemTR">
           <td>
-            <img selectit="false" oiid="${oi.id}" class="cartProductItemIfSelected" src="../../img/site/cartNotSelected.png">
+            <img selectit="false" oiid="${oi.id}" class="cartProductItemIfSelected"
+                 src="../../img/site/cartNotSelected.png">
             <a style="display:none" href="#nowhere"><img src="../../img/site/cartSelected.png"></a>
             <c:if test="${empty oi.product.firstProductImage}">
               <img class="cartProductImg" src="../../img/site/imgNotFound.jpg">
@@ -273,7 +274,8 @@
               <span class="hidden orderItemStock" pid="${oi.product.id}">${oi.product.stock}</span>
               <span class="hidden orderItemPromotePrice" pid="${oi.product.id}">${oi.product.promotePrice}</span>
               <a pid="${oi.product.id}" class="numberMinus" href="#nowhere">-</a>
-              <input pid="${oi.product.id}" oiid="${oi.id}" class="orderItemNumberSetting" autocomplete="off" value="${oi.number}">
+              <input pid="${oi.product.id}" oiid="${oi.id}" class="orderItemNumberSetting" autocomplete="off"
+                     value="${oi.number}">
               <a stock="${oi.product.stock}" pid="${oi.product.id}" class="numberPlus" href="#nowhere">+</a>
             </div>
           </td>

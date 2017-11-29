@@ -25,7 +25,7 @@ public class BaseForeServlet extends HttpServlet {
             int start = 0;
             int count = 10;
             try {
-                if(request.getParameter("page.start").equals(null)) {
+                if (request.getParameter("page.start").equals(null)) {
                     start = 0;
                 } else {
                     start = Integer.parseInt((request.getParameter("page.start")));
@@ -38,7 +38,7 @@ public class BaseForeServlet extends HttpServlet {
             Method m = this.getClass().getMethod(method, HttpServletRequest.class, HttpServletResponse.class, Page.class);
             String redirect = m.invoke(this, request, response, page).toString();
 
-            if(redirect.startsWith("@"))
+            if (redirect.startsWith("@"))
                 response.sendRedirect(redirect.substring(1));
             else if (redirect.startsWith("%"))
                 response.getWriter().print(redirect.substring(1));

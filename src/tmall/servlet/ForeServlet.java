@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 public class ForeServlet extends BaseForeServlet {
     /**
@@ -37,7 +40,7 @@ public class ForeServlet extends BaseForeServlet {
         name = HtmlUtils.htmlEscape(name);//防止恶意注册，如：<script>alert('papapa')</script>弹出一个对话框
 
         boolean exist = userDAO.isExist(name);
-        if(exist) {
+        if (exist) {
             request.setAttribute("msg", "用户名已经被使用，请重新输入用户名");
             return "/front/register.jsp";
         }
@@ -58,7 +61,7 @@ public class ForeServlet extends BaseForeServlet {
         String password = request.getParameter("password");
 
         User user = userDAO.userLogin(name, password);
-        if(user == null) {
+        if (user == null) {
             request.setAttribute("msg", "账号密码错误");
             return "/front/login.jsp";
         }
@@ -104,7 +107,7 @@ public class ForeServlet extends BaseForeServlet {
      */
     public String checkLogin(HttpServletRequest request, HttpServletResponse response, Page page) {
         User user = (User) request.getSession().getAttribute("user");
-        if(user != null) {
+        if (user != null) {
             return "%success";
         }
         return "%fail";
@@ -119,7 +122,7 @@ public class ForeServlet extends BaseForeServlet {
         PrintWriter pw = null;
         User user = userDAO.userLogin(name, password);
 
-        if(user == null) {
+        if (user == null) {
             request.setAttribute("msg", "账号密码错误");
             return "%fail";
         }
@@ -138,7 +141,7 @@ public class ForeServlet extends BaseForeServlet {
         new ProductDAO().setSaleAndReviewNumber(category.getProductList());
 
         String sort = request.getParameter("sort");
-        if(sort != null) {
+        if (sort != null) {
             switch (sort) {
                 case "review":
                     Collections.sort(category.getProductList(), new ProductReviewComparator());
@@ -211,9 +214,9 @@ public class ForeServlet extends BaseForeServlet {
         boolean found = false;
 
         List<OrderItem> oi_list = orderItemDAO.listByUser(user.getId());
-        for(OrderItem oi : oi_list) {
-            if(oi.getProduct().getId() == product.getId()) {
-                if(oi.getNumber() + num <= oi.getProduct().getStock()) {
+        for (OrderItem oi : oi_list) {
+            if (oi.getProduct().getId() == product.getId()) {
+                if (oi.getNumber() + num <= oi.getProduct().getStock()) {
                     oi.setNumber(oi.getNumber() + num);
                 } else {
                     oi.setNumber(oi.getProduct().getStock());
@@ -224,7 +227,7 @@ public class ForeServlet extends BaseForeServlet {
             }
         }
 
-        if(!found) {
+        if (!found) {
             OrderItem oi = new OrderItem();
             oi.setProduct(product);
             oi.setUser(user);
@@ -252,7 +255,7 @@ public class ForeServlet extends BaseForeServlet {
         List<OrderItem> oi_buyAll_list = new ArrayList<>();
         float totalPrice = 0.0F;
 
-        for(String str : oi_ids) {
+        for (String str : oi_ids) {
             int oi_id = Integer.parseInt(str);
             OrderItem oi = orderItemDAO.getOrderItemById(oi_id);
             totalPrice += oi.getProduct().getPromotePrice() * oi.getNumber();//获取所有选中的oiid的价格总数
@@ -268,15 +271,15 @@ public class ForeServlet extends BaseForeServlet {
      */
     public String changeOrderItem(HttpServletRequest request, HttpServletResponse response, Page page) {
         User user = (User) request.getSession().getAttribute("user");
-        if(user == null) {
+        if (user == null) {
             return "%fail";
         }
 
         int pid = Integer.parseInt(request.getParameter("pid"));
         int number = Integer.parseInt(request.getParameter("number"));
         List<OrderItem> oi_list = orderItemDAO.listByUser(user.getId());
-        for(OrderItem oi : oi_list) {
-            if(oi.getProduct().getId() == pid) {
+        for (OrderItem oi : oi_list) {
+            if (oi.getProduct().getId() == pid) {
                 orderItemDAO.update(oi);
                 break;
             }
@@ -289,7 +292,7 @@ public class ForeServlet extends BaseForeServlet {
      */
     public String deleteOrderItem(HttpServletRequest request, HttpServletResponse response, Page page) {
         User user = (User) request.getSession().getAttribute("user");
-        if(user == null) {
+        if (user == null) {
             return "%fail";
         }
         int oiid = Integer.parseInt(request.getParameter("oiid"));
@@ -304,7 +307,7 @@ public class ForeServlet extends BaseForeServlet {
         User user = (User) request.getSession().getAttribute("user");
 
         List<OrderItem> oi_buyAll_list = (List<OrderItem>) request.getSession().getAttribute("oi_buyAll_list");//buyAll方法中
-        if(oi_buyAll_list == null) {
+        if (oi_buyAll_list == null) {
             return "@/forelogin";
         }
         //创建一个Order对象
@@ -328,7 +331,7 @@ public class ForeServlet extends BaseForeServlet {
         orderDAO.add(order);
 
         float orderTotal = 0.0F;
-        for(OrderItem oi : oi_buyAll_list) {//为每个产品项赋予这个订单对象
+        for (OrderItem oi : oi_buyAll_list) {//为每个产品项赋予这个订单对象
             oi.setOrder(order);
             orderItemDAO.update(oi);
             orderTotal += oi.getProduct().getPromotePrice() * oi.getNumber();
@@ -363,7 +366,7 @@ public class ForeServlet extends BaseForeServlet {
      */
     public String bought(HttpServletRequest request, HttpServletResponse response, Page page) {
         User user = (User) request.getSession().getAttribute("user");
-        if(user == null) {
+        if (user == null) {
             return "/front/login.jsp";
         }
         List<Order> o_list = orderDAO.list(user.getId(), OrderDAO.delete);//列举出的订单不包含被“删除”的（实际上未被删除）

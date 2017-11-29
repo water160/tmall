@@ -16,6 +16,8 @@
   </div>
 
   <div>
-    <a href="forepayed?oid=${param.oid}&total=${param.total}"><button class="confirmPay">支付完成</button></a>
+    <a href="forepayed?oid=${param.oid}&total=${param.total}">
+      <button class="confirmPay">支付完成</button>
+    </a>
   </div>
 </div>

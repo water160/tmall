@@ -22,16 +22,16 @@ public class ForeAuthFilter implements Filter {
         String contextPath = request.getServletContext().getContextPath();
 
         String[] noNeedAuthPage = new String[]{
-          "home","checkLogin","register","loginAjax","login","product","category","search"
+                "home", "checkLogin", "register", "loginAjax", "login", "product", "category", "search"
         };
 
         String uri = request.getRequestURI();
         uri = StringUtils.remove(uri, contextPath);
-        if(uri.startsWith("/fore") && !uri.startsWith("/foreServlet")) {
+        if (uri.startsWith("/fore") && !uri.startsWith("/foreServlet")) {
             String method = StringUtils.substringAfterLast(uri, "/fore");
             if (!Arrays.asList(noNeedAuthPage).contains(method)) {
                 User user = (User) request.getSession().getAttribute("user");
-                if(user == null) {
+                if (user == null) {
                     response.sendRedirect("/front/login.jsp");
                     return;
                 }

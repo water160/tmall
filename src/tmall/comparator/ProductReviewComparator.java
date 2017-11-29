@@ -1,10 +1,10 @@
 package tmall.comparator;
 
-import java.util.Comparator;
-
 import tmall.bean.Product;
 
-public class ProductReviewComparator implements Comparator<Product>{
+import java.util.Comparator;
+
+public class ProductReviewComparator implements Comparator<Product> {
 
     @Override
     public int compare(Product p1, Product p2) {

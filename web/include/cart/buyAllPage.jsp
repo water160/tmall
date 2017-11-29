@@ -77,7 +77,8 @@
               <img src="../../img/site/promise.png" title="消费者保障服务,承诺如实描述">
             </td>
             <td>
-              <span class="orderItemProductPrice">￥<fmt:formatNumber type="number" value="${oi.product.promotePrice}" minFractionDigits="2"/></span>
+              <span class="orderItemProductPrice">￥<fmt:formatNumber type="number" value="${oi.product.promotePrice}"
+                                                                     minFractionDigits="2"/></span>
             </td>
             <td>
               <span class="orderItemProductNumber">
@@ -85,7 +86,9 @@
               </span>
             </td>
             <td>
-              <span class="orderItemUnitSum">￥<fmt:formatNumber type="number" value="${oi.number * oi.product.promotePrice}" minFractionDigits="2"/></span></td>
+              <span class="orderItemUnitSum">￥<fmt:formatNumber type="number"
+                                                                value="${oi.number * oi.product.promotePrice}"
+                                                                minFractionDigits="2"/></span></td>
             <c:if test="${st.count==1}">
               <td rowspan="5" class="orderItemLastTD">
                 <label class="orderItemDeliveryLabel">
@@ -114,7 +117,8 @@
           </span>
         </div>
 
-        <span class="pull-right">店铺合计(含运费): ￥<fmt:formatNumber type="number" value="${totalPrice}" minFractionDigits="2"/></span>
+        <span class="pull-right">店铺合计(含运费): ￥<fmt:formatNumber type="number" value="${totalPrice}"
+                                                               minFractionDigits="2"/></span>
       </div>
 
     </div>
@@ -122,7 +126,8 @@
     <div class="orderItemTotalSumDiv">
       <div class="pull-right">
         <span>实付款：</span>
-        <span class="orderItemTotalSumSpan">￥<fmt:formatNumber type="number" value="${totalPrice}" minFractionDigits="2"/></span>
+        <span class="orderItemTotalSumSpan">￥<fmt:formatNumber type="number" value="${totalPrice}"
+                                                               minFractionDigits="2"/></span>
       </div>
     </div>
 

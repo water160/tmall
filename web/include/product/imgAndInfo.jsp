@@ -52,15 +52,15 @@
                     if ("success" == result) {
                       $(".addCartButton").html("已加入购物车");
                       $(".addCartButton").animate({
-                        background:'lightgray',
-                        border:'1px solid lightgray',
-                        color:'black'
+                        background: 'lightgray',
+                        border: '1px solid lightgray',
+                        color: 'black'
                       }, 500);
                       $(".addCartButton").html("加入购物车");
                       $(".addCartButton").animate({
-                        background:'#C40000',
-                        border:'1px solid #C40000',
-                        color:'white'
+                        background: '#C40000',
+                        border: '1px solid #C40000',
+                        color: 'white'
                       }, 500);
                     }
                     else {

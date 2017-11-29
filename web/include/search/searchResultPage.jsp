@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
 <ol class="breadcrumb">
   <li><a href="/forehome">首页</a></li>
@@ -6,6 +6,6 @@
 </ol>
 <div id="searchResult">
   <div class="searchResultDiv">
-    <%@include file="productsBySearch.jsp"%>
+    <%@include file="productsBySearch.jsp" %>
   </div>
 </div>
