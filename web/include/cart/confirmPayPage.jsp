@@ -80,6 +80,6 @@
   </div>
   <div class="confirmPayButtonDiv">
     <div class="confirmPayWarning">请收到货后，再确认收货！否则您可能钱货两空！</div>
-    <a href="foreorderConfirmed?oid=${order.id}"><button class="confirmPayButton">确认支付</button></a>
+    <a href="foreorderConfirmed?oid=${order.id}"><button class="confirmPayButton">确认收货</button></a>
   </div>
 </div>

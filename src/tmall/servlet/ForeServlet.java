@@ -373,11 +373,27 @@ public class ForeServlet extends BaseForeServlet {
         return "/front/bought.jsp";
     }
 
+    /**
+     * 显示订单页中的操作，对于卖家已发货的，确认收货
+     */
     public String confirmPay(HttpServletRequest request, HttpServletResponse response, Page page) {
         int oid = Integer.parseInt(request.getParameter("oid"));
         Order order = orderDAO.getOrderById(oid);
         orderItemDAO.fill(order);
         request.setAttribute("order", order);
         return "/front/confirmPay.jsp";
+    }
+
+    /**
+     * 确认收货页面
+     */
+    public String orderConfirmed(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int oid = Integer.parseInt(request.getParameter("oid"));
+        Order order = orderDAO.getOrderById(oid);
+        order.setStatus(OrderDAO.waitReview);
+        order.setConfirmDate(new Date());
+        orderDAO.update(order);
+
+        return "/front/orderConfirmed.jsp";
     }
 }
