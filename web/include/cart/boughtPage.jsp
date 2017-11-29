@@ -1,3 +1,5 @@
+<%@ page import="tmall.bean.Order" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
 <script>
@@ -67,14 +69,30 @@
   });
 
 </script>
-
+<%
+  List<Order> o_list = (List<Order>) request.getAttribute("o_list");
+  int waitPayNum = 0, waitDeliveryNum = 0, waitConfirm = 0, waitReview = 0;
+  for(Order order : o_list) {
+      if(order.getStatus().equals("waitPay")) {
+        waitPayNum++;
+      } else if(order.getStatus().equals("waitDelivery")) {
+        waitDeliveryNum++;
+      } else if(order.getStatus().equals("waitConfirm")) {
+        waitConfirm++;
+      } else if(order.getStatus().equals("waitReview")) {
+        waitReview++;
+      } else {
+        System.out.println(order.getStatus() + " no status fit!");
+      }
+  }
+%>
 <div class="boughtDiv">
   <div class="orderType">
-    <div class="selectedOrderType"><a orderStatus="all" href="#nowhere">所有订单</a></div>
-    <div><a orderStatus="waitPay" href="#nowhere">待付款</a></div>
-    <div><a orderStatus="waitDelivery" href="#nowhere">待发货</a></div>
-    <div><a orderStatus="waitConfirm" href="#nowhere">待收货</a></div>
-    <div><a orderStatus="waitReview" href="#nowhere" class="noRightborder">待评价</a></div>
+    <div class="selectedOrderType"><a orderStatus="all" href="#nowhere">所有订单(${o_list.size()})</a></div>
+    <div><a orderStatus="waitPay" href="#nowhere">待付款(<%=waitPayNum%>)</a></div>
+    <div><a orderStatus="waitDelivery" href="#nowhere">待发货(<%=waitDeliveryNum%>)</a></div>
+    <div><a orderStatus="waitConfirm" href="#nowhere">待收货(<%=waitConfirm%>)</a></div>
+    <div><a orderStatus="waitReview" href="#nowhere" class="noRightborder">待评价(<%=waitReview%>)</a></div>
     <div class="orderTypeLastOne"><a class="noRightborder"> </a></div>
   </div>
   <div style="clear:both"></div>
